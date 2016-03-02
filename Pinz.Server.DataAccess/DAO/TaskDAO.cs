@@ -2,42 +2,25 @@
 using Ninject;
 using System.Linq;
 using Com.Pinz.Server.DataAccess.Model;
+using Com.Pinz.Server.DataAccess.Db;
+using System;
+using System.Data.Entity;
 
 namespace Com.Pinz.Server.DataAccess.DAO
 {
-    internal class TaskDAO : ITaskDAO
+    internal class TaskDAO : BasicDAO<Task>, ITaskDAO
     {
-
-        private PinzDbContext context;
-
         [Inject]
-        public  TaskDAO(PinzDbContext context)
-        {
-            this.context = context;
-        }
-
-        public Task Create(Task task)
-        {
-            Task savedTask = context.Tasks.Add(task);
-            context.SaveChanges();
-            return savedTask;
-        }
-
-        public void Delete(Task task)
-        {
-            context.Entry(task).State = System.Data.Entity.EntityState.Deleted;
-            context.SaveChanges();
-        }
+        public TaskDAO(PinzDbContext context) : base(context){ }
 
         public List<Task> ReadByCategory(Category category)
         {
             return context.Tasks.Where(t => t.CategoryId == category.CategoryId).ToList();
         }
 
-        public void Update(Task task)
+        protected override DbSet<Task> GetDbSet()
         {
-            context.Entry(task).State = System.Data.Entity.EntityState.Modified;
-            context.SaveChanges();
+            return context.Tasks;
         }
     }
 }

@@ -1,6 +1,5 @@
 ﻿using Com.Pinzonline.DomainModel;
 using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Runtime.Serialization;
@@ -8,24 +7,20 @@ using System.Runtime.Serialization;
 namespace Com.Pinz.Server.DataAccess.Model
 {
     [DataContract]
-    public class Category : ICategory
+    public class ProjectStaff : IProjectStaff
     {
         [DataMember]
-        [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public Guid CategoryId { get; set; }
-
-        [DataMember]
-        [Required]
-        public string Name { get; set; }
-
-        [DataMember]
-        [Required]
+        [Key, Column(Order = 0)]
         public Guid ProjectId { get; set; }
         public virtual Project Project { get; set; }
 
+        [DataMember]
+        [Key, Column(Order = 1)]
+        public Guid UserId { get; set; }
+        public virtual User User { get; set; }
 
-        public virtual List<Task> Tasks { get; set; }
+        [Required]
+        public bool IsProjectAdmin { get; set; }
 
     }
 }

@@ -2,30 +2,17 @@
 using System.Linq;
 using Ninject;
 using Com.Pinz.Server.DataAccess.Model;
+using Com.Pinz.Server.DataAccess.Db;
+using System;
+using System.Data.Entity;
 
 namespace Com.Pinz.Server.DataAccess.DAO
 {
-    internal class CategoryDAO : ICategoryDAO
+    internal class CategoryDAO : BasicDAO<Category>, ICategoryDAO
     {
-        private PinzDbContext context;
-
         [Inject]
-        public CategoryDAO(PinzDbContext context)
+        public CategoryDAO(PinzDbContext context) : base(context)
         {
-            this.context = context;
-        }
-
-        public Category Create(Category category)
-        {
-            Category savedCategory = context.Categories.Add(category);
-            context.SaveChanges();
-            return savedCategory;
-        }
-
-        public void Delete(Category category)
-        {
-            context.Entry(category).State = System.Data.Entity.EntityState.Deleted;
-            context.SaveChanges();
         }
 
         public List<Category> ReadAll()
@@ -33,10 +20,9 @@ namespace Com.Pinz.Server.DataAccess.DAO
             return context.Categories.ToList();
         }
 
-        public void Update(Category category)
+        protected override DbSet<Category> GetDbSet()
         {
-            context.Entry(category).State = System.Data.Entity.EntityState.Modified;
-            context.SaveChanges();
+            return context.Categories;
         }
     }
 }

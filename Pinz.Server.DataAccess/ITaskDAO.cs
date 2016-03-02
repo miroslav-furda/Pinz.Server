@@ -3,14 +3,8 @@ using System.Collections.Generic;
 
 namespace Com.Pinz.Server.DataAccess
 {
-    public interface ITaskDAO
+    public interface ITaskDAO : IBasicDAO<Task>
     {
-        void Delete(Task task);
-
         List<Task> ReadByCategory(Category category);
-
-        void Update(Task task);
-
-        Task Create(Task task);
     }
 }

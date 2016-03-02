@@ -8,24 +8,22 @@ using System.Runtime.Serialization;
 namespace Com.Pinz.Server.DataAccess.Model
 {
     [DataContract]
-    public class Category : ICategory
+    public class Project : IProject
     {
         [DataMember]
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public Guid CategoryId { get; set; }
+        public Guid ProjectId { get; set; }
 
-        [DataMember]
         [Required]
         public string Name { get; set; }
 
-        [DataMember]
+        public string Description { get; set; }
+
         [Required]
-        public Guid ProjectId { get; set; }
-        public virtual Project Project { get; set; }
+        public Guid CompanyId { get; set; }
+        public virtual Company Company { get; set; }
 
-
-        public virtual List<Task> Tasks { get; set; }
-
+        public virtual List<Category> Categories { get; set; }
     }
 }

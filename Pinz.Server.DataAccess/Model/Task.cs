@@ -1,5 +1,4 @@
-﻿
-using com.Pinzonline.DomainModel;
+﻿using Com.Pinzonline.DomainModel;
 using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -26,6 +25,7 @@ namespace Com.Pinz.Server.DataAccess.Model
         public bool IsComplete { get; set; }
 
         [DataMember]
+        [Required]
         public DateTime CreationTime { get; set; }
 
         [DataMember]
@@ -41,54 +41,19 @@ namespace Com.Pinz.Server.DataAccess.Model
         public int ActualWork { get; set; }
 
         [DataMember]
+        [Required]
         public TaskStatus Status { get; set; }
 
         [DataMember]
-        public TaskPriority Priority { get; set; }
+        public TaskPriority? Priority { get; set; }
 
+        [Required]
         [DataMember]
-        public string Companies { get; set; }
-
         public Guid CategoryId { get; set; }
         public virtual Category Category { get; set; }
 
-        ICategory ITask.Category
-        {
-            get
-            {
-                return Category;
-            }
-
-            set
-            {
-                Category = value as Category;
-            }
-        }
-
-        public Guid UserId
-        {
-            get
-            {
-                throw new NotImplementedException();
-            }
-
-            set
-            {
-                throw new NotImplementedException();
-            }
-        }
-
-        public IUser User
-        {
-            get
-            {
-                throw new NotImplementedException();
-            }
-
-            set
-            {
-                throw new NotImplementedException();
-            }
-        }
+        [DataMember]
+        public Guid? UserId { get; set; }
+        public virtual User User { get; set; }
     }
 }

@@ -43,7 +43,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="Pinz.DomainModel, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Pinz.DomainModel.0.9.4\lib\net452\Pinz.DomainModel.dll</HintPath>
+      <HintPath>..\packages\Pinz.DomainModel.1.0.1\lib\net452\Pinz.DomainModel.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
@@ -59,15 +59,25 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DAO\BasicDAO.cs" />
     <Compile Include="DAO\CategoryDAO.cs" />
     <Compile Include="DAO\TaskDAO.cs" />
     <Compile Include="DataAccessNinjectModule.cs" />
+    <Compile Include="IBasicDAO.cs" />
     <Compile Include="ICategoryDAO.cs" />
     <Compile Include="ITaskDAO.cs" />
+    <Compile Include="Migrations\201603022132458_Initial_Db_Schema.cs" />
+    <Compile Include="Migrations\201603022132458_Initial_Db_Schema.Designer.cs">
+      <DependentUpon>201603022132458_Initial_Db_Schema.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Model\Category.cs" />
+    <Compile Include="Model\Company.cs" />
+    <Compile Include="Model\Project.cs" />
+    <Compile Include="Model\ProjectStaff.cs" />
     <Compile Include="Model\Task.cs" />
-    <Compile Include="DAO\PinzDbContext.cs" />
+    <Compile Include="Db\PinzDbContext.cs" />
+    <Compile Include="Model\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -75,6 +85,11 @@
       <SubType>Designer</SubType>
     </None>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201603022132458_Initial_Db_Schema.resx">
+      <DependentUpon>201603022132458_Initial_Db_Schema.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
