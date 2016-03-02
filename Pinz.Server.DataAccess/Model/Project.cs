@@ -25,5 +25,6 @@ namespace Com.Pinz.Server.DataAccess.Model
         public virtual Company Company { get; set; }
 
         public virtual List<Category> Categories { get; set; }
+        public virtual List<ProjectStaff> ProjectStaff { get; set; }
     }
 }

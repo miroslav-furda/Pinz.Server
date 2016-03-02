@@ -11,13 +11,11 @@ namespace Com.Pinz.Server.DataAccess.DAO
     internal class CategoryDAO : BasicDAO<Category>, ICategoryDAO
     {
         [Inject]
-        public CategoryDAO(PinzDbContext context) : base(context)
-        {
-        }
+        public CategoryDAO(PinzDbContext context) : base(context) { }
 
-        public List<Category> ReadAll()
+        public List<Category> ReadAllByProjectId(Guid projectId)
         {
-            return context.Categories.ToList();
+            return context.Categories.Where(c => c.ProjectId == projectId).ToList();
         }
 
         protected override DbSet<Category> GetDbSet()

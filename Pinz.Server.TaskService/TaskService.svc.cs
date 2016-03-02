@@ -24,7 +24,7 @@ namespace Com.Pinz.Server.TaskService
 
         public List<Task> ReadByCategory(Category category)
         {
-            return taskDAO.ReadByCategory(category);
+            return taskDAO.ReadAllByCategoryId(category.CategoryId);
         }
 
         public void Update(Task task)

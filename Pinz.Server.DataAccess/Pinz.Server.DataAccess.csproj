@@ -61,11 +61,19 @@
   <ItemGroup>
     <Compile Include="DAO\BasicDAO.cs" />
     <Compile Include="DAO\CategoryDAO.cs" />
+    <Compile Include="DAO\CompanyDAO.cs" />
+    <Compile Include="DAO\ProjectDAO.cs" />
+    <Compile Include="DAO\ProjectStaffDAO.cs" />
     <Compile Include="DAO\TaskDAO.cs" />
+    <Compile Include="DAO\UserDAO.cs" />
     <Compile Include="DataAccessNinjectModule.cs" />
     <Compile Include="IBasicDAO.cs" />
     <Compile Include="ICategoryDAO.cs" />
+    <Compile Include="ICompanyDAO.cs" />
+    <Compile Include="IProjectDAO.cs" />
+    <Compile Include="IProjectStaffDAO.cs" />
     <Compile Include="ITaskDAO.cs" />
+    <Compile Include="IUserDAO.cs" />
     <Compile Include="Migrations\201603022132458_Initial_Db_Schema.cs" />
     <Compile Include="Migrations\201603022132458_Initial_Db_Schema.Designer.cs">
       <DependentUpon>201603022132458_Initial_Db_Schema.cs</DependentUpon>

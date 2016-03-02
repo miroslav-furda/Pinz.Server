@@ -127,10 +127,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\NinjectWebCommon.cs" />
-    <Compile Include="CategoryService.svc.cs">
-      <DependentUpon>CategoryService.svc</DependentUpon>
-    </Compile>
-    <Compile Include="ICategoryService.cs" />
     <Compile Include="Infrastructure\ApplyDataContractResolverAttribute.cs" />
     <Compile Include="ITaskService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -143,7 +139,6 @@
     <Folder Include="App_Data\" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="CategoryService.svc" />
     <Content Include="packages.config">
       <SubType>Designer</SubType>
     </Content>

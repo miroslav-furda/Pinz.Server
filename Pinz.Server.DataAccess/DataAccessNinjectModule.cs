@@ -11,6 +11,10 @@ namespace Com.Pinz.Server.DataAccess
             Kernel.Bind<PinzDbContext>().ToSelf().InThreadScope().WithConstructorArgument("connectionString", "name=pinzDBConnectionString"); 
             Kernel.Bind<ITaskDAO>().To<TaskDAO>();
             Kernel.Bind<ICategoryDAO>().To<CategoryDAO>();
+            Kernel.Bind<ICompanyDAO>().To<CompanyDAO>();
+            Kernel.Bind<IProjectDAO>().To<ProjectDAO>();
+            Kernel.Bind<IProjectStaffDAO>().To<ProjectStaffDAO>();
+            Kernel.Bind<IUserDAO>().To<UserDAO>();
         }
     }
 }

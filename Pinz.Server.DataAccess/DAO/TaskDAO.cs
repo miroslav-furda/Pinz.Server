@@ -13,9 +13,9 @@ namespace Com.Pinz.Server.DataAccess.DAO
         [Inject]
         public TaskDAO(PinzDbContext context) : base(context){ }
 
-        public List<Task> ReadByCategory(Category category)
+        public List<Task> ReadAllByCategoryId(Guid categoryId)
         {
-            return context.Tasks.Where(t => t.CategoryId == category.CategoryId).ToList();
+            return context.Tasks.Where(t => t.CategoryId == categoryId).ToList();
         }
 
         protected override DbSet<Task> GetDbSet()

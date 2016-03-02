@@ -1,1 +1,0 @@
-﻿<%@ ServiceHost Language="C#" Debug="true" Service="Com.Pinz.Server.TaskService.CategoryService" CodeBehind="CategoryService.svc.cs" %>
