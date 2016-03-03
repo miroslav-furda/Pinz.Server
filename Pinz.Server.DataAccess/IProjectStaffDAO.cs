@@ -6,6 +6,7 @@ namespace Com.Pinz.Server.DataAccess
 {
     public interface IProjectStaffDAO : IBasicDAO<ProjectStaff>
     {
-        bool IsUserAdminInProject(Guid userid, Guid projectId);
+        bool IsUserAdminInProject(Guid userId, Guid projectId);
+        ProjectStaff GetById(Guid userId, Guid projectId);
     }
 }

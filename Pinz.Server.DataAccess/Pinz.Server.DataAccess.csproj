@@ -78,6 +78,10 @@
     <Compile Include="Migrations\201603022132458_Initial_Db_Schema.Designer.cs">
       <DependentUpon>201603022132458_Initial_Db_Schema.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201603032144361_User_Company_Admin.cs" />
+    <Compile Include="Migrations\201603032144361_User_Company_Admin.Designer.cs">
+      <DependentUpon>201603032144361_User_Company_Admin.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Model\Category.cs" />
     <Compile Include="Model\Company.cs" />
@@ -97,6 +101,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201603022132458_Initial_Db_Schema.resx">
       <DependentUpon>201603022132458_Initial_Db_Schema.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201603032144361_User_Company_Admin.resx">
+      <DependentUpon>201603032144361_User_Company_Admin.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

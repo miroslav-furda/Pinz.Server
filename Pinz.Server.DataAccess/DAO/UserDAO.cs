@@ -13,6 +13,11 @@ namespace Com.Pinz.Server.DataAccess.DAO
         [Inject]
         public UserDAO(PinzDbContext context) : base(context) { }
 
+        public User GetById(Guid userId)
+        {
+            return GetDbSet().Where( u => u.UserId == userId).Single();
+        }
+
         public List<User> ReadAllUsersInCompany(Guid companyId)
         {
             return GetDbSet().Where(u => u.CompanyId == companyId).ToList();

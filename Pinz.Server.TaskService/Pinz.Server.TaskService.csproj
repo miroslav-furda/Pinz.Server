@@ -126,7 +126,15 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AdministrationService.svc.cs">
+      <DependentUpon>AdministrationService.svc</DependentUpon>
+    </Compile>
     <Compile Include="App_Start\NinjectWebCommon.cs" />
+    <Compile Include="AuthorisationService.svc.cs">
+      <DependentUpon>AuthorisationService.svc</DependentUpon>
+    </Compile>
+    <Compile Include="IAdministrationService.cs" />
+    <Compile Include="IAuthorisationService.cs" />
     <Compile Include="Infrastructure\ApplyDataContractResolverAttribute.cs" />
     <Compile Include="ITaskService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -139,6 +147,8 @@
     <Folder Include="App_Data\" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="AdministrationService.svc" />
+    <Content Include="AuthorisationService.svc" />
     <Content Include="packages.config">
       <SubType>Designer</SubType>
     </Content>

@@ -9,5 +9,6 @@ namespace Com.Pinz.Server.DataAccess
         User ReadByEmail(string email);
         List<User> ReadAllUsersInCompany(Guid companyId);
         List<User> ReadAllUsersInProject(Guid projectId);
+        User GetById(Guid userId);
     }
 }

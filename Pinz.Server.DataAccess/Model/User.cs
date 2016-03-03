@@ -22,6 +22,8 @@ namespace Com.Pinz.Server.DataAccess.Model
 
         public string FamilyName { get; set; }
 
+        public bool IsCompanyAdmin { get; set; }
+
         [Required]
         public Guid CompanyId { get; set; }
         public virtual Company Company { get; set; }

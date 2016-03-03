@@ -12,6 +12,11 @@ namespace Com.Pinz.Server.DataAccess.DAO
         [Inject]
         public ProjectStaffDAO(PinzDbContext context) : base(context) { }
 
+        public ProjectStaff GetById(Guid userId, Guid projectId)
+        {
+            return GetDbSet().Where(ps => ps.UserId == userId && ps.ProjectId == projectId).Single();
+        }
+
         public bool IsUserAdminInProject(Guid userid, Guid projectId)
         {
             return GetDbSet().Where( ps => ps.UserId == userid && ps.ProjectId== projectId).Single().IsProjectAdmin;

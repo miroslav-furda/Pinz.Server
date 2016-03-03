@@ -2,39 +2,67 @@
 using Ninject;
 using Com.Pinz.Server.DataAccess;
 using Com.Pinz.Server.DataAccess.Model;
+using System;
 
 namespace Com.Pinz.Server.TaskService
 {
-    // NOTE: You can use the "Rename" command on the "Refactor" menu to change the class name "TaskService" in code, svc and config file together.
-    // NOTE: In order to launch WCF Test Client for testing this service, please select TaskService.svc or TaskService.svc.cs at the Solution Explorer and start debugging.
     public class TaskService : ITaskService
     {
         private ITaskDAO taskDAO;
+        private ICategoryDAO categoryDAO;
+        private IProjectDAO projectDAO;
 
         [Inject]
-        public TaskService(ITaskDAO taskDAO)
+        public TaskService(IProjectDAO projectDAO, ICategoryDAO categoryDAO, ITaskDAO taskDAO)
         {
+            this.projectDAO = projectDAO;
+            this.categoryDAO = categoryDAO;
             this.taskDAO = taskDAO;
         }
 
-        public void Delete(Task task)
+        public List<Task> ReadAllTasksByCategoryId(Guid categoryId)
         {
-            taskDAO.Delete(task);
+            return taskDAO.ReadAllByCategoryId(categoryId);
         }
 
-        public List<Task> ReadByCategory(Category category)
+        public List<Category> ReadAllCategoriesByProjectId(Guid projectId)
         {
-            return taskDAO.ReadAllByCategoryId(category.CategoryId);
+            return categoryDAO.ReadAllByProjectId(projectId);
         }
 
-        public void Update(Task task)
+        public List<Project> ReadAllProjectsForUserId(Guid userId)
+        {
+            return projectDAO.ReadAllProjectsForUserId(userId);
+        }
+
+        public Task CreateTask(Task task)
+        {
+            return taskDAO.Create(task);
+        }
+
+        public void UpdateTask(Task task)
         {
             taskDAO.Update(task);
         }
 
-        public Task Create(Task task)
+        public void DeleteTask(Task task)
         {
-            return taskDAO.Create(task);
+            taskDAO.Delete(task);
+        }
+
+        public Category CreateCategory(Category category)
+        {
+            return categoryDAO.Create(category);
+        }
+
+        public void UpdateCategory(Category category)
+        {
+            categoryDAO.Update(category);
+        }
+
+        public void DeleteCategory(Category category)
+        {
+            categoryDAO.Delete(category);
         }
     }
 }

@@ -6,43 +6,51 @@ using System.ServiceModel;
 
 namespace Com.Pinz.Server.TaskService
 {
-    [ServiceContract(Namespace ="http://pinzonline.com/services")]
-    public interface ITaskService
+    [ServiceContract(Namespace = "http://pinzonline.com/services")]
+    public interface IAdministrationService
     {
         [OperationContract]
         [ApplyDataContractResolver]
-        List<Task> ReadAllTasksByCategoryId(Guid categoryId);
+        List<Project> ReadProjectsForCompanyId(Guid companyId);
 
         [OperationContract]
         [ApplyDataContractResolver]
-        List<Category> ReadAllCategoriesByProjectId(Guid projectId);
+        List<User> ReadAllUsersForCompanyId(Guid companyId);
 
         [OperationContract]
         [ApplyDataContractResolver]
-        List<Project> ReadAllProjectsForUserId(Guid userId);
+        Company ReadCompanyById(Guid id);
 
         [OperationContract]
         [ApplyDataContractResolver]
-        Task CreateTask(Task task);
+        void AddUserToProject(Guid userId, Guid projectId, bool isProjectAdmin);
 
         [OperationContract]
         [ApplyDataContractResolver]
-        void UpdateTask(Task task);
+        void RemoveUserFromProject(Guid userId, Guid projectId);
 
         [OperationContract]
         [ApplyDataContractResolver]
-        void DeleteTask(Task task);
+        Project CreateProject(Project project);
 
         [OperationContract]
         [ApplyDataContractResolver]
-        Category CreateCategory(Category task);
+        void UpdateProject(Project project);
 
         [OperationContract]
         [ApplyDataContractResolver]
-        void UpdateCategory(Category task);
+        void DeleteProject(Project project);
 
         [OperationContract]
         [ApplyDataContractResolver]
-        void DeleteCategory(Category task);
+        User CreateUser(User user);
+
+        [OperationContract]
+        [ApplyDataContractResolver]
+        void UpdateUser(User user);
+
+        [OperationContract]
+        [ApplyDataContractResolver]
+        void DeleteUser(User user);
     }
 }
