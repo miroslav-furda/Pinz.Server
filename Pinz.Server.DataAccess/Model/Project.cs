@@ -15,11 +15,14 @@ namespace Com.Pinz.Server.DataAccess.Model
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public Guid ProjectId { get; set; }
 
+        [DataMember]
         [Required]
         public string Name { get; set; }
 
+        [DataMember]
         public string Description { get; set; }
 
+        [DataMember]
         [Required]
         public Guid CompanyId { get; set; }
         public virtual Company Company { get; set; }

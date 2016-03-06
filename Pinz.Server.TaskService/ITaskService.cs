@@ -35,14 +35,14 @@ namespace Com.Pinz.Server.TaskService
 
         [OperationContract]
         [ApplyDataContractResolver]
-        Category CreateCategory(Category task);
+        Category CreateCategory(Category category);
 
         [OperationContract]
         [ApplyDataContractResolver]
-        void UpdateCategory(Category task);
+        void UpdateCategory(Category category);
 
         [OperationContract]
         [ApplyDataContractResolver]
-        void DeleteCategory(Category task);
+        void DeleteCategory(Category category);
     }
 }

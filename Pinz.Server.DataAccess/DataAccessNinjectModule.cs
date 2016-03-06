@@ -8,7 +8,7 @@ namespace Com.Pinz.Server.DataAccess
     {
         public override void Load()
         {
-            Kernel.Bind<PinzDbContext>().ToSelf().InThreadScope().WithConstructorArgument("connectionString", "name=pinzDBConnectionString"); 
+            Kernel.Bind<PinzDbContext>().ToSelf().InThreadScope().WithConstructorArgument("connectionString", "pinzDBConnectionString"); 
             Kernel.Bind<ITaskDAO>().To<TaskDAO>();
             Kernel.Bind<ICategoryDAO>().To<CategoryDAO>();
             Kernel.Bind<ICompanyDAO>().To<CompanyDAO>();

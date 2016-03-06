@@ -3,7 +3,7 @@
   <Role name="Pinz.Server.TaskService">
     <Instances count="1" />
     <ConfigurationSettings>
-      <Setting name="Microsoft.WindowsAzure.Plugins.Diagnostics.ConnectionString" value="UseDevelopmentStorage=true" />
+      <Setting name="Microsoft.WindowsAzure.Plugins.Diagnostics.ConnectionString" value="DefaultEndpointsProtocol=https;AccountName=pinzdevwestorage;AccountKey=RVqI8CiE7MHR1S/ncwFsZfaAUMcoT98kn6OiwgJ/UhVNz9Ug94CQHas6G5k3AN448oA5X09Qn1fDrFtCwpezhg==" />
     </ConfigurationSettings>
   </Role>
 </ServiceConfiguration>

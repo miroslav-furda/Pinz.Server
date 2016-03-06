@@ -42,9 +42,6 @@
     <Folder Include="Profiles" />
   </ItemGroup>
   <ItemGroup>
-    <PublishProfile Include="Profiles\oproductivityserviceProduction.azurePubxml" />
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\Pinz.Server.TaskService\Pinz.Server.TaskService.csproj">
       <Name>Pinz.Server.TaskService</Name>
       <Project>{cd37691c-4d7c-46bf-abc1-ca64d47a55f3}</Project>
@@ -56,6 +53,9 @@
   </ItemGroup>
   <ItemGroup>
     <DiagnosticsConfiguration Include="Pinz.Server.TaskServiceContent\diagnostics.wadcfgx" />
+  </ItemGroup>
+  <ItemGroup>
+    <PublishProfile Include="Profiles\pinzDevWEServiceStaging.azurePubxml" />
   </ItemGroup>
   <!-- Import the target files for this project template -->
   <PropertyGroup>

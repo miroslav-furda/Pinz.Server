@@ -17,8 +17,10 @@ namespace Com.Pinz.Server.DataAccess.Model
         [DataMember]
         [Key, Column(Order = 1)]
         public Guid UserId { get; set; }
+
         public virtual User User { get; set; }
 
+        [DataMember]
         [Required]
         public bool IsProjectAdmin { get; set; }
 

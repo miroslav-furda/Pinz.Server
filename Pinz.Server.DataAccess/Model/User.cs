@@ -15,15 +15,20 @@ namespace Com.Pinz.Server.DataAccess.Model
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public Guid UserId { get; set; }
 
+        [DataMember]
         [Required]
         public string EMail { get; set; }
 
+        [DataMember]
         public string FirstName { get; set; }
 
+        [DataMember]
         public string FamilyName { get; set; }
 
+        [DataMember]
         public bool IsCompanyAdmin { get; set; }
 
+        [DataMember]
         [Required]
         public Guid CompanyId { get; set; }
         public virtual Company Company { get; set; }
