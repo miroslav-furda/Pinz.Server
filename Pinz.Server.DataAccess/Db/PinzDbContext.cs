@@ -25,6 +25,8 @@ namespace Com.Pinz.Server.DataAccess.Db
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
+
+            modelBuilder.Entity<ProjectStaff>().HasRequired(ps => ps.User).WithMany( u => u.ProjectStaff).WillCascadeOnDelete(false);
         }
     }
 }

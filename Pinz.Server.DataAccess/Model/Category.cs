@@ -22,6 +22,7 @@ namespace Com.Pinz.Server.DataAccess.Model
         [DataMember]
         [Required]
         public Guid ProjectId { get; set; }
+        [ForeignKey("ProjectId")]
         public virtual Project Project { get; set; }
 
 

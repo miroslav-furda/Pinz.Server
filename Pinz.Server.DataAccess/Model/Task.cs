@@ -50,10 +50,12 @@ namespace Com.Pinz.Server.DataAccess.Model
         [Required]
         [DataMember]
         public Guid CategoryId { get; set; }
+        [ForeignKey("CategoryId")]
         public virtual Category Category { get; set; }
 
         [DataMember]
         public Guid? UserId { get; set; }
+        [ForeignKey("UserId")]
         public virtual User User { get; set; }
     }
 }

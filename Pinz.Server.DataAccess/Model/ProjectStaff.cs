@@ -18,7 +18,7 @@ namespace Com.Pinz.Server.DataAccess.Model
         [Key, Column(Order = 1)]
         public Guid UserId { get; set; }
 
-        public virtual User User { get; set; }
+        public User User { get; set; }
 
         [DataMember]
         [Required]

@@ -74,13 +74,9 @@
     <Compile Include="IProjectStaffDAO.cs" />
     <Compile Include="ITaskDAO.cs" />
     <Compile Include="IUserDAO.cs" />
-    <Compile Include="Migrations\201603022132458_Initial_Db_Schema.cs" />
-    <Compile Include="Migrations\201603022132458_Initial_Db_Schema.Designer.cs">
-      <DependentUpon>201603022132458_Initial_Db_Schema.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201603032144361_User_Company_Admin.cs" />
-    <Compile Include="Migrations\201603032144361_User_Company_Admin.Designer.cs">
-      <DependentUpon>201603032144361_User_Company_Admin.cs</DependentUpon>
+    <Compile Include="Migrations\201603070828267_Initial.cs" />
+    <Compile Include="Migrations\201603070828267_Initial.Designer.cs">
+      <DependentUpon>201603070828267_Initial.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Model\Category.cs" />
@@ -99,11 +95,8 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201603022132458_Initial_Db_Schema.resx">
-      <DependentUpon>201603022132458_Initial_Db_Schema.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201603032144361_User_Company_Admin.resx">
-      <DependentUpon>201603032144361_User_Company_Admin.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201603070828267_Initial.resx">
+      <DependentUpon>201603070828267_Initial.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

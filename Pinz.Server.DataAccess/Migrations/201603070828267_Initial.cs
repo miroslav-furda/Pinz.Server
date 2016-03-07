@@ -3,7 +3,7 @@ namespace Com.Pinz.Server.DataAccess.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class Initial_Db_Schema : DbMigration
+    public partial class Initial : DbMigration
     {
         public override void Up()
         {
@@ -27,11 +27,10 @@ namespace Com.Pinz.Server.DataAccess.Migrations
                         Name = c.String(nullable: false),
                         Description = c.String(),
                         CompanyId = c.Guid(nullable: false),
-                        Company_ComapnyId = c.Guid(),
                     })
                 .PrimaryKey(t => t.ProjectId)
-                .ForeignKey("dbo.Companies", t => t.Company_ComapnyId)
-                .Index(t => t.Company_ComapnyId);
+                .ForeignKey("dbo.Companies", t => t.CompanyId, cascadeDelete: true)
+                .Index(t => t.CompanyId);
             
             CreateTable(
                 "dbo.Companies",
@@ -50,12 +49,12 @@ namespace Com.Pinz.Server.DataAccess.Migrations
                         EMail = c.String(nullable: false),
                         FirstName = c.String(),
                         FamilyName = c.String(),
+                        IsCompanyAdmin = c.Boolean(nullable: false),
                         CompanyId = c.Guid(nullable: false),
-                        Company_ComapnyId = c.Guid(),
                     })
                 .PrimaryKey(t => t.UserId)
-                .ForeignKey("dbo.Companies", t => t.Company_ComapnyId)
-                .Index(t => t.Company_ComapnyId);
+                .ForeignKey("dbo.Companies", t => t.CompanyId, cascadeDelete: true)
+                .Index(t => t.CompanyId);
             
             CreateTable(
                 "dbo.ProjectStaffs",
@@ -67,7 +66,7 @@ namespace Com.Pinz.Server.DataAccess.Migrations
                     })
                 .PrimaryKey(t => new { t.ProjectId, t.UserId })
                 .ForeignKey("dbo.Projects", t => t.ProjectId, cascadeDelete: true)
-                .ForeignKey("dbo.Users", t => t.UserId, cascadeDelete: true)
+                .ForeignKey("dbo.Users", t => t.UserId)
                 .Index(t => t.ProjectId)
                 .Index(t => t.UserId);
             
@@ -103,15 +102,15 @@ namespace Com.Pinz.Server.DataAccess.Migrations
             DropForeignKey("dbo.Tasks", "CategoryId", "dbo.Categories");
             DropForeignKey("dbo.ProjectStaffs", "UserId", "dbo.Users");
             DropForeignKey("dbo.ProjectStaffs", "ProjectId", "dbo.Projects");
-            DropForeignKey("dbo.Users", "Company_ComapnyId", "dbo.Companies");
-            DropForeignKey("dbo.Projects", "Company_ComapnyId", "dbo.Companies");
+            DropForeignKey("dbo.Users", "CompanyId", "dbo.Companies");
+            DropForeignKey("dbo.Projects", "CompanyId", "dbo.Companies");
             DropForeignKey("dbo.Categories", "ProjectId", "dbo.Projects");
             DropIndex("dbo.Tasks", new[] { "UserId" });
             DropIndex("dbo.Tasks", new[] { "CategoryId" });
             DropIndex("dbo.ProjectStaffs", new[] { "UserId" });
             DropIndex("dbo.ProjectStaffs", new[] { "ProjectId" });
-            DropIndex("dbo.Users", new[] { "Company_ComapnyId" });
-            DropIndex("dbo.Projects", new[] { "Company_ComapnyId" });
+            DropIndex("dbo.Users", new[] { "CompanyId" });
+            DropIndex("dbo.Projects", new[] { "CompanyId" });
             DropIndex("dbo.Categories", new[] { "ProjectId" });
             DropTable("dbo.Tasks");
             DropTable("dbo.ProjectStaffs");

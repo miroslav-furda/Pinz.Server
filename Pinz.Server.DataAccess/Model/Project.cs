@@ -25,6 +25,7 @@ namespace Com.Pinz.Server.DataAccess.Model
         [DataMember]
         [Required]
         public Guid CompanyId { get; set; }
+        [ForeignKey("CompanyId")]
         public virtual Company Company { get; set; }
 
         public virtual List<Category> Categories { get; set; }
