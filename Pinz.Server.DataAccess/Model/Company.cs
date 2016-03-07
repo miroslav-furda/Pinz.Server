@@ -13,7 +13,7 @@ namespace Com.Pinz.Server.DataAccess.Model
         [DataMember]
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public Guid ComapnyId { get; set; }
+        public Guid CompanyId { get; set; }
 
         [DataMember]
         [Required]

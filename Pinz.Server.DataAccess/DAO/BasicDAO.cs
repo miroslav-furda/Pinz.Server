@@ -27,7 +27,7 @@ namespace Com.Pinz.Server.DataAccess.DAO
 
         public void Update(T entity)
         {
-            context.Entry(entity).State = System.Data.Entity.EntityState.Modified;
+            context.Entry(entity).State = EntityState.Modified;
             context.SaveChanges();
         }
 

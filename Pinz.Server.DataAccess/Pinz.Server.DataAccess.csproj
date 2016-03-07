@@ -43,7 +43,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="Pinz.DomainModel, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Pinz.DomainModel.1.0.1\lib\net452\Pinz.DomainModel.dll</HintPath>
+      <HintPath>..\packages\Pinz.DomainModel.1.0.2\lib\net452\Pinz.DomainModel.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
@@ -74,9 +74,9 @@
     <Compile Include="IProjectStaffDAO.cs" />
     <Compile Include="ITaskDAO.cs" />
     <Compile Include="IUserDAO.cs" />
-    <Compile Include="Migrations\201603070828267_Initial.cs" />
-    <Compile Include="Migrations\201603070828267_Initial.Designer.cs">
-      <DependentUpon>201603070828267_Initial.cs</DependentUpon>
+    <Compile Include="Migrations\201603071014390_Initial.cs" />
+    <Compile Include="Migrations\201603071014390_Initial.Designer.cs">
+      <DependentUpon>201603071014390_Initial.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Model\Category.cs" />
@@ -95,8 +95,8 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201603070828267_Initial.resx">
-      <DependentUpon>201603070828267_Initial.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201603071014390_Initial.resx">
+      <DependentUpon>201603071014390_Initial.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

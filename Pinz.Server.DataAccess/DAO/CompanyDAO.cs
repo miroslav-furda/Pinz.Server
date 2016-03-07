@@ -14,7 +14,7 @@ namespace Com.Pinz.Server.DataAccess.DAO
 
         public Company ReadCompanyById(Guid id)
         {
-            return GetDbSet().Where(c => c.ComapnyId == id).Single();
+            return GetDbSet().Where(c => c.CompanyId == id).Single();
         }
 
         public Company ReadCompanyByName(string companyName)

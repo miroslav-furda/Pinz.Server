@@ -13,7 +13,7 @@ namespace Com.Pinz.Server.DataAccess.Migrations
         
         string IMigrationMetadata.Id
         {
-            get { return "201603070828267_Initial"; }
+            get { return "201603071014390_Initial"; }
         }
         
         string IMigrationMetadata.Source

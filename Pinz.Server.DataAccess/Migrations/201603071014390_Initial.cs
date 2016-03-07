@@ -36,10 +36,10 @@ namespace Com.Pinz.Server.DataAccess.Migrations
                 "dbo.Companies",
                 c => new
                     {
-                        ComapnyId = c.Guid(nullable: false, identity: true),
+                        CompanyId = c.Guid(nullable: false, identity: true),
                         Name = c.String(nullable: false),
                     })
-                .PrimaryKey(t => t.ComapnyId);
+                .PrimaryKey(t => t.CompanyId);
             
             CreateTable(
                 "dbo.Users",
