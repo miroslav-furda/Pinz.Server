@@ -19,7 +19,8 @@ namespace Com.Pinz.Server.DataAccess.DAO
 
         public bool IsUserAdminInProject(Guid userid, Guid projectId)
         {
-            return GetDbSet().Where( ps => ps.UserId == userid && ps.ProjectId== projectId).Single().IsProjectAdmin;
+            ProjectStaff staffing = GetDbSet().Where(ps => ps.UserId == userid && ps.ProjectId == projectId).SingleOrDefault();
+            return staffing != null ? staffing.IsProjectAdmin : false;
         }
 
         protected override DbSet<ProjectStaff> GetDbSet()

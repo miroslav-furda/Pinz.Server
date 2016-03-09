@@ -1,9 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Runtime.Serialization;
-using System.ServiceModel;
-using System.Text;
 using Com.Pinz.Server.DataAccess.Model;
 using Com.Pinz.Server.DataAccess;
 
@@ -27,7 +23,7 @@ namespace Com.Pinz.Server.TaskService
 
         public bool IsUserProjectAdmin(Guid userId, Guid projectId)
         {
-            return projectStaffDAO.GetById(userId, projectId).IsProjectAdmin;
+            return projectStaffDAO.IsUserAdminInProject(userId, projectId);
         }
 
         public User ReadUserByEmail(string email)

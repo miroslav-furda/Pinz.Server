@@ -1,4 +1,5 @@
 ﻿using Com.Pinz.Server.DataAccess.Model;
+using Com.Pinz.Server.TaskService.Infrastructure;
 using System;
 using System.ServiceModel;
 
@@ -14,6 +15,7 @@ namespace Com.Pinz.Server.TaskService
         bool IsUserComapnyAdmin(Guid userId);
 
         [OperationContract]
+        [ApplyDataContractResolver]
         User ReadUserByEmail(string email);
     }
 }
