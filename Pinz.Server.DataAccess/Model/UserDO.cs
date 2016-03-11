@@ -8,7 +8,8 @@ using System.Runtime.Serialization;
 namespace Com.Pinz.Server.DataAccess.Model
 {
     [DataContract]
-    public class User : IUser
+    [Table("Users")]
+    public class UserDO : IUser
     {
         [DataMember]
         [Key]
@@ -32,10 +33,10 @@ namespace Com.Pinz.Server.DataAccess.Model
         [Required]
         public Guid CompanyId { get; set; }
         [ForeignKey("CompanyId")]
-        public virtual Company Company { get; set; }
+        public virtual CompanyDO Company { get; set; }
 
-        public virtual List<Task> Tasks { get; set; }
+        public virtual List<TaskDO> Tasks { get; set; }
 
-        public virtual List<ProjectStaff> ProjectStaff { get; set; }
+        public virtual List<ProjectStaffDO> ProjectStaff { get; set; }
     }
 }

@@ -4,8 +4,8 @@ using System.Collections.Generic;
 
 namespace Com.Pinz.Server.DataAccess
 {
-    public interface ICategoryDAO : IBasicDAO<Category>
+    public interface ICategoryDAO : IBasicDAO<CategoryDO>
     {
-        List<Category> ReadAllByProjectId(Guid projectId);
+        List<CategoryDO> ReadAllByProjectId(Guid projectId);
     }
 }

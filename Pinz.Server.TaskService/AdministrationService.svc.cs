@@ -23,62 +23,62 @@ namespace Com.Pinz.Server.TaskService
             this.projectStaffDAO = projectStaffDAO;
         }
 
-        public List<User> ReadAllUsersForCompanyId(Guid companyId)
+        public List<UserDO> ReadAllUsersForCompanyId(Guid companyId)
         {
             return userDAO.ReadAllUsersInCompany(companyId);
         }
 
-        public List<Project> ReadProjectsForCompanyId(Guid companyId)
+        public List<ProjectDO> ReadProjectsForCompanyId(Guid companyId)
         {
             return projectDAO.ReadProjectsForCompanyId(companyId);
         }
 
         public void RemoveUserFromProject(Guid userId, Guid projectId)
         {
-            ProjectStaff ps = projectStaffDAO.GetById(userId, projectId);
+            ProjectStaffDO ps = projectStaffDAO.GetById(userId, projectId);
             projectStaffDAO.Delete(ps);
         }
 
         public void AddUserToProject(Guid userId, Guid projectId, bool isProjectAdmin)
         {
-            ProjectStaff ps = new ProjectStaff();
+            ProjectStaffDO ps = new ProjectStaffDO();
             ps.ProjectId = projectId;
             ps.UserId = userId;
             ps.IsProjectAdmin = isProjectAdmin;
             projectStaffDAO.Create(ps);
         }
 
-        public Company ReadCompanyById(Guid id)
+        public CompanyDO ReadCompanyById(Guid id)
         {
             return companyDAO.ReadCompanyById(id);
         }
 
-        public Project CreateProject(Project project)
+        public ProjectDO CreateProject(ProjectDO project)
         {
             return projectDAO.Create(project);
         }
 
-        public User CreateUser(User user)
+        public UserDO CreateUser(UserDO user)
         {
             return userDAO.Create(user);
         }
 
-        public void DeleteProject(Project project)
+        public void DeleteProject(ProjectDO project)
         {
             projectDAO.Delete(project);
         }
 
-        public void DeleteUser(User user)
+        public void DeleteUser(UserDO user)
         {
             userDAO.Delete(user);
         }
 
-        public void UpdateProject(Project project)
+        public void UpdateProject(ProjectDO project)
         {
             projectDAO.Update(project);
         }
 
-        public void UpdateUser(User user)
+        public void UpdateUser(UserDO user)
         {
             userDAO.Update(user);
         }

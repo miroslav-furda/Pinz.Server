@@ -9,14 +9,14 @@ namespace Com.Pinz.Server.TaskService
     {
         [OperationContract]
         [ApplyDataContractResolver]
-        Company CreateCompany(Company company);
+        CompanyDO CreateCompany(CompanyDO company);
 
         [OperationContract]
         [ApplyDataContractResolver]
-        void UpdateCompany(Company company);
+        void UpdateCompany(CompanyDO company);
 
         [OperationContract]
         [ApplyDataContractResolver]
-        void DeleteCompany(Company company);
+        void DeleteCompany(CompanyDO company);
     }
 }

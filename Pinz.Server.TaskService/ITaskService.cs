@@ -11,38 +11,38 @@ namespace Com.Pinz.Server.TaskService
     {
         [OperationContract]
         [ApplyDataContractResolver]
-        List<Task> ReadAllTasksByCategoryId(Guid categoryId);
+        List<TaskDO> ReadAllTasksByCategoryId(Guid categoryId);
 
         [OperationContract]
         [ApplyDataContractResolver]
-        List<Category> ReadAllCategoriesByProjectId(Guid projectId);
+        List<CategoryDO> ReadAllCategoriesByProjectId(Guid projectId);
 
         [OperationContract]
         [ApplyDataContractResolver]
-        List<Project> ReadAllProjectsForUserId(Guid userId);
+        List<ProjectDO> ReadAllProjectsForUserId(Guid userId);
 
         [OperationContract]
         [ApplyDataContractResolver]
-        Task CreateTask(Task task);
+        TaskDO CreateTask(TaskDO task);
 
         [OperationContract]
         [ApplyDataContractResolver]
-        void UpdateTask(Task task);
+        void UpdateTask(TaskDO task);
 
         [OperationContract]
         [ApplyDataContractResolver]
-        void DeleteTask(Task task);
+        void DeleteTask(TaskDO task);
 
         [OperationContract]
         [ApplyDataContractResolver]
-        Category CreateCategory(Category category);
+        CategoryDO CreateCategory(CategoryDO category);
 
         [OperationContract]
         [ApplyDataContractResolver]
-        void UpdateCategory(Category category);
+        void UpdateCategory(CategoryDO category);
 
         [OperationContract]
         [ApplyDataContractResolver]
-        void DeleteCategory(Category category);
+        void DeleteCategory(CategoryDO category);
     }
 }

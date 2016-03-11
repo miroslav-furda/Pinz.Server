@@ -14,17 +14,17 @@ namespace Com.Pinz.Server.TaskService
             this.companyDAO = companyDAO;
         }
 
-        public Company CreateCompany(Company company)
+        public CompanyDO CreateCompany(CompanyDO company)
         {
             return companyDAO.Create(company);
         }
 
-        public void DeleteCompany(Company company)
+        public void DeleteCompany(CompanyDO company)
         {
             companyDAO.Delete(company);
         }
 
-        public void UpdateCompany(Company company)
+        public void UpdateCompany(CompanyDO company)
         {
             companyDAO.Update(company);
         }

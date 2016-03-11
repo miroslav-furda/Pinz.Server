@@ -15,18 +15,18 @@ namespace Com.Pinz.Server.DataAccess.Db
         {
         }
 
-        public DbSet<Task> Tasks { get; set; }
-        public DbSet<Category> Categories { get; set; }
-        public DbSet<Project> Projects { get; set; }
-        public DbSet<ProjectStaff> ProjectStaff { get; set; }
-        public DbSet<Company> Companies { get; set; }
-        public DbSet<User> Users { get; set; }
+        public DbSet<TaskDO> Tasks { get; set; }
+        public DbSet<CategoryDO> Categories { get; set; }
+        public DbSet<ProjectDO> Projects { get; set; }
+        public DbSet<ProjectStaffDO> ProjectStaff { get; set; }
+        public DbSet<CompanyDO> Companies { get; set; }
+        public DbSet<UserDO> Users { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
 
-            modelBuilder.Entity<ProjectStaff>().HasRequired(ps => ps.User).WithMany( u => u.ProjectStaff).WillCascadeOnDelete(false);
+            modelBuilder.Entity<ProjectStaffDO>().HasRequired(ps => ps.User).WithMany( u => u.ProjectStaff).WillCascadeOnDelete(false);
         }
     }
 }

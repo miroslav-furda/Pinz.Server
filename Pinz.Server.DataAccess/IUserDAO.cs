@@ -4,11 +4,11 @@ using System.Collections.Generic;
 
 namespace Com.Pinz.Server.DataAccess
 {
-    public interface IUserDAO : IBasicDAO<User>
+    public interface IUserDAO : IBasicDAO<UserDO>
     {
-        User ReadByEmail(string email);
-        List<User> ReadAllUsersInCompany(Guid companyId);
-        List<User> ReadAllUsersInProject(Guid projectId);
-        User GetById(Guid userId);
+        UserDO ReadByEmail(string email);
+        List<UserDO> ReadAllUsersInCompany(Guid companyId);
+        List<UserDO> ReadAllUsersInProject(Guid projectId);
+        UserDO GetById(Guid userId);
     }
 }

@@ -79,13 +79,13 @@
       <DependentUpon>201603071014390_Initial.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
-    <Compile Include="Model\Category.cs" />
-    <Compile Include="Model\Company.cs" />
-    <Compile Include="Model\Project.cs" />
-    <Compile Include="Model\ProjectStaff.cs" />
-    <Compile Include="Model\Task.cs" />
+    <Compile Include="Model\CategoryDO.cs" />
+    <Compile Include="Model\CompanyDO.cs" />
+    <Compile Include="Model\ProjectDO.cs" />
+    <Compile Include="Model\ProjectStaffDO.cs" />
+    <Compile Include="Model\TaskDO.cs" />
     <Compile Include="Db\PinzDbContext.cs" />
-    <Compile Include="Model\User.cs" />
+    <Compile Include="Model\UserDO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -4,9 +4,9 @@ using System.Collections.Generic;
 
 namespace Com.Pinz.Server.DataAccess
 {
-    public interface IProjectDAO : IBasicDAO<Project>
+    public interface IProjectDAO : IBasicDAO<ProjectDO>
     {
-        List<Project> ReadProjectsForCompanyId(Guid companyId);
-        List<Project> ReadAllProjectsForUserId(Guid userId);
+        List<ProjectDO> ReadProjectsForCompanyId(Guid companyId);
+        List<ProjectDO> ReadAllProjectsForUserId(Guid userId);
     }
 }

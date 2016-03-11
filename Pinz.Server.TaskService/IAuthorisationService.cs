@@ -16,6 +16,6 @@ namespace Com.Pinz.Server.TaskService
 
         [OperationContract]
         [ApplyDataContractResolver]
-        User ReadUserByEmail(string email);
+        UserDO ReadUserByEmail(string email);
     }
 }

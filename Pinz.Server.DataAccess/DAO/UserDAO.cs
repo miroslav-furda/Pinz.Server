@@ -8,32 +8,32 @@ using System.Data.Entity;
 
 namespace Com.Pinz.Server.DataAccess.DAO
 {
-    internal class UserDAO : BasicDAO<User>, IUserDAO
+    internal class UserDAO : BasicDAO<UserDO>, IUserDAO
     {
         [Inject]
         public UserDAO(PinzDbContext context) : base(context) { }
 
-        public User GetById(Guid userId)
+        public UserDO GetById(Guid userId)
         {
             return GetDbSet().Where( u => u.UserId == userId).Single();
         }
 
-        public List<User> ReadAllUsersInCompany(Guid companyId)
+        public List<UserDO> ReadAllUsersInCompany(Guid companyId)
         {
             return GetDbSet().Where(u => u.CompanyId == companyId).ToList();
         }
 
-        public List<User> ReadAllUsersInProject(Guid projectId)
+        public List<UserDO> ReadAllUsersInProject(Guid projectId)
         {
             return GetDbSet().Where(u => u.ProjectStaff.Any(ps => ps.ProjectId == projectId)).ToList();
         }
 
-        public User ReadByEmail(string email)
+        public UserDO ReadByEmail(string email)
         {
             return GetDbSet().Where(u => u.EMail == email).SingleOrDefault();
         }
 
-        protected override DbSet<User> GetDbSet()
+        protected override DbSet<UserDO> GetDbSet()
         {
             return context.Users;
         }

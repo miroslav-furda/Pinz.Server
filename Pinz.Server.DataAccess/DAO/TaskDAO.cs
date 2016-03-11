@@ -8,17 +8,17 @@ using System.Data.Entity;
 
 namespace Com.Pinz.Server.DataAccess.DAO
 {
-    internal class TaskDAO : BasicDAO<Task>, ITaskDAO
+    internal class TaskDAO : BasicDAO<TaskDO>, ITaskDAO
     {
         [Inject]
         public TaskDAO(PinzDbContext context) : base(context){ }
 
-        public List<Task> ReadAllByCategoryId(Guid categoryId)
+        public List<TaskDO> ReadAllByCategoryId(Guid categoryId)
         {
             return context.Tasks.Where(t => t.CategoryId == categoryId).ToList();
         }
 
-        protected override DbSet<Task> GetDbSet()
+        protected override DbSet<TaskDO> GetDbSet()
         {
             return context.Tasks;
         }

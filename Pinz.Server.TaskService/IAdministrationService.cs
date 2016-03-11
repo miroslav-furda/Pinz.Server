@@ -11,15 +11,15 @@ namespace Com.Pinz.Server.TaskService
     {
         [OperationContract]
         [ApplyDataContractResolver]
-        List<Project> ReadProjectsForCompanyId(Guid companyId);
+        List<ProjectDO> ReadProjectsForCompanyId(Guid companyId);
 
         [OperationContract]
         [ApplyDataContractResolver]
-        List<User> ReadAllUsersForCompanyId(Guid companyId);
+        List<UserDO> ReadAllUsersForCompanyId(Guid companyId);
 
         [OperationContract]
         [ApplyDataContractResolver]
-        Company ReadCompanyById(Guid id);
+        CompanyDO ReadCompanyById(Guid id);
 
         [OperationContract]
         [ApplyDataContractResolver]
@@ -31,26 +31,26 @@ namespace Com.Pinz.Server.TaskService
 
         [OperationContract]
         [ApplyDataContractResolver]
-        Project CreateProject(Project project);
+        ProjectDO CreateProject(ProjectDO project);
 
         [OperationContract]
         [ApplyDataContractResolver]
-        void UpdateProject(Project project);
+        void UpdateProject(ProjectDO project);
 
         [OperationContract]
         [ApplyDataContractResolver]
-        void DeleteProject(Project project);
+        void DeleteProject(ProjectDO project);
 
         [OperationContract]
         [ApplyDataContractResolver]
-        User CreateUser(User user);
+        UserDO CreateUser(UserDO user);
 
         [OperationContract]
         [ApplyDataContractResolver]
-        void UpdateUser(User user);
+        void UpdateUser(UserDO user);
 
         [OperationContract]
         [ApplyDataContractResolver]
-        void DeleteUser(User user);
+        void DeleteUser(UserDO user);
     }
 }

@@ -7,7 +7,8 @@ using System.Runtime.Serialization;
 namespace Com.Pinz.Server.DataAccess.Model
 {
     [DataContract]
-    public class Task : ITask
+    [Table("Tasks")]
+    public class TaskDO : ITask
     {
         [DataMember]
         [Key]
@@ -51,11 +52,11 @@ namespace Com.Pinz.Server.DataAccess.Model
         [DataMember]
         public Guid CategoryId { get; set; }
         [ForeignKey("CategoryId")]
-        public virtual Category Category { get; set; }
+        public virtual CategoryDO Category { get; set; }
 
         [DataMember]
         public Guid? UserId { get; set; }
         [ForeignKey("UserId")]
-        public virtual User User { get; set; }
+        public virtual UserDO User { get; set; }
     }
 }

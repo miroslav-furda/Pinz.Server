@@ -26,7 +26,7 @@ namespace Com.Pinz.Server.TaskService
             return projectStaffDAO.IsUserAdminInProject(userId, projectId);
         }
 
-        public User ReadUserByEmail(string email)
+        public UserDO ReadUserByEmail(string email)
         {
             return userDAO.ReadByEmail(email);
         }

@@ -20,47 +20,47 @@ namespace Com.Pinz.Server.TaskService
             this.taskDAO = taskDAO;
         }
 
-        public List<Task> ReadAllTasksByCategoryId(Guid categoryId)
+        public List<TaskDO> ReadAllTasksByCategoryId(Guid categoryId)
         {
             return taskDAO.ReadAllByCategoryId(categoryId);
         }
 
-        public List<Category> ReadAllCategoriesByProjectId(Guid projectId)
+        public List<CategoryDO> ReadAllCategoriesByProjectId(Guid projectId)
         {
             return categoryDAO.ReadAllByProjectId(projectId);
         }
 
-        public List<Project> ReadAllProjectsForUserId(Guid userId)
+        public List<ProjectDO> ReadAllProjectsForUserId(Guid userId)
         {
             return projectDAO.ReadAllProjectsForUserId(userId);
         }
 
-        public Task CreateTask(Task task)
+        public TaskDO CreateTask(TaskDO task)
         {
             return taskDAO.Create(task);
         }
 
-        public void UpdateTask(Task task)
+        public void UpdateTask(TaskDO task)
         {
             taskDAO.Update(task);
         }
 
-        public void DeleteTask(Task task)
+        public void DeleteTask(TaskDO task)
         {
             taskDAO.Delete(task);
         }
 
-        public Category CreateCategory(Category category)
+        public CategoryDO CreateCategory(CategoryDO category)
         {
             return categoryDAO.Create(category);
         }
 
-        public void UpdateCategory(Category category)
+        public void UpdateCategory(CategoryDO category)
         {
             categoryDAO.Update(category);
         }
 
-        public void DeleteCategory(Category category)
+        public void DeleteCategory(CategoryDO category)
         {
             categoryDAO.Delete(category);
         }

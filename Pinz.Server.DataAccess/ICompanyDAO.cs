@@ -3,9 +3,9 @@ using System;
 
 namespace Com.Pinz.Server.DataAccess
 {
-    public interface ICompanyDAO : IBasicDAO<Company>
+    public interface ICompanyDAO : IBasicDAO<CompanyDO>
     {
-        Company ReadCompanyByName(string companyName);
-        Company ReadCompanyById(Guid id);
+        CompanyDO ReadCompanyByName(string companyName);
+        CompanyDO ReadCompanyById(Guid id);
     }
 }
