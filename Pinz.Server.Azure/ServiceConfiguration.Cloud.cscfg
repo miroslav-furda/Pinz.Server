@@ -5,5 +5,8 @@
     <ConfigurationSettings>
       <Setting name="Microsoft.WindowsAzure.Plugins.Diagnostics.ConnectionString" value="DefaultEndpointsProtocol=https;AccountName=pinzdevwestorage;AccountKey=RVqI8CiE7MHR1S/ncwFsZfaAUMcoT98kn6OiwgJ/UhVNz9Ug94CQHas6G5k3AN448oA5X09Qn1fDrFtCwpezhg==" />
     </ConfigurationSettings>
+    <Certificates>
+      <Certificate name="SSLCertificate" thumbprint="B4415A0AB7E9297E03A90E260D90740412353F87" thumbprintAlgorithm="sha1" />
+    </Certificates>
   </Role>
 </ServiceConfiguration>

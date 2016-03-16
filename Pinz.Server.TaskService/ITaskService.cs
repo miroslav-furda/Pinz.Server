@@ -27,7 +27,7 @@ namespace Com.Pinz.Server.TaskService
 
         [OperationContract]
         [ApplyDataContractResolver]
-        void UpdateTask(TaskDO task);
+        TaskDO UpdateTask(TaskDO task);
 
         [OperationContract]
         [ApplyDataContractResolver]
@@ -39,7 +39,7 @@ namespace Com.Pinz.Server.TaskService
 
         [OperationContract]
         [ApplyDataContractResolver]
-        void UpdateCategory(CategoryDO category);
+        CategoryDO UpdateCategory(CategoryDO category);
 
         [OperationContract]
         [ApplyDataContractResolver]

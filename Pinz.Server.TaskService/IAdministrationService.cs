@@ -35,7 +35,7 @@ namespace Com.Pinz.Server.TaskService
 
         [OperationContract]
         [ApplyDataContractResolver]
-        void UpdateProject(ProjectDO project);
+        ProjectDO UpdateProject(ProjectDO project);
 
         [OperationContract]
         [ApplyDataContractResolver]
@@ -47,7 +47,7 @@ namespace Com.Pinz.Server.TaskService
 
         [OperationContract]
         [ApplyDataContractResolver]
-        void UpdateUser(UserDO user);
+        UserDO UpdateUser(UserDO user);
 
         [OperationContract]
         [ApplyDataContractResolver]

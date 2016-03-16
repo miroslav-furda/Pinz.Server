@@ -13,7 +13,7 @@ namespace Com.Pinz.Server.TaskService
 
         [OperationContract]
         [ApplyDataContractResolver]
-        void UpdateCompany(CompanyDO company);
+        CompanyDO UpdateCompany(CompanyDO company);
 
         [OperationContract]
         [ApplyDataContractResolver]

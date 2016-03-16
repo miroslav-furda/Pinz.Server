@@ -24,9 +24,9 @@ namespace Com.Pinz.Server.TaskService
             companyDAO.Delete(company);
         }
 
-        public void UpdateCompany(CompanyDO company)
+        public CompanyDO UpdateCompany(CompanyDO company)
         {
-            companyDAO.Update(company);
+            return companyDAO.Update(company);
         }
     }
 }

@@ -5,7 +5,7 @@ namespace Com.Pinz.Server.DataAccess
     {
         void Delete(T entity);
 
-        void Update(T entity);
+        T Update(T entity);
 
         T Create(T entity);
     }

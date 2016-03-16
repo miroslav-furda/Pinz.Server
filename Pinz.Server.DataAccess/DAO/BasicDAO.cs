@@ -25,10 +25,11 @@ namespace Com.Pinz.Server.DataAccess.DAO
             context.SaveChanges();
         }
 
-        public void Update(T entity)
+        public T Update(T entity)
         {
             context.Entry(entity).State = EntityState.Modified;
             context.SaveChanges();
+            return entity;
         }
 
         protected abstract DbSet<T> GetDbSet();

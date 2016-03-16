@@ -40,9 +40,9 @@ namespace Com.Pinz.Server.TaskService
             return taskDAO.Create(task);
         }
 
-        public void UpdateTask(TaskDO task)
+        public TaskDO UpdateTask(TaskDO task)
         {
-            taskDAO.Update(task);
+            return taskDAO.Update(task);
         }
 
         public void DeleteTask(TaskDO task)
@@ -55,9 +55,9 @@ namespace Com.Pinz.Server.TaskService
             return categoryDAO.Create(category);
         }
 
-        public void UpdateCategory(CategoryDO category)
+        public CategoryDO UpdateCategory(CategoryDO category)
         {
-            categoryDAO.Update(category);
+            return categoryDAO.Update(category);
         }
 
         public void DeleteCategory(CategoryDO category)

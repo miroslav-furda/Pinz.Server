@@ -73,14 +73,14 @@ namespace Com.Pinz.Server.TaskService
             userDAO.Delete(user);
         }
 
-        public void UpdateProject(ProjectDO project)
+        public ProjectDO UpdateProject(ProjectDO project)
         {
-            projectDAO.Update(project);
+            return projectDAO.Update(project);
         }
 
-        public void UpdateUser(UserDO user)
+        public UserDO UpdateUser(UserDO user)
         {
-            userDAO.Update(user);
+            return userDAO.Update(user);
         }
 
     }
