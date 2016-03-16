@@ -3,6 +3,7 @@ using Ninject;
 using Com.Pinz.Server.DataAccess;
 using Com.Pinz.Server.DataAccess.Model;
 using System;
+using System.Security.Permissions;
 
 namespace Com.Pinz.Server.TaskService
 {
@@ -30,6 +31,7 @@ namespace Com.Pinz.Server.TaskService
             return categoryDAO.ReadAllByProjectId(projectId);
         }
 
+        [PrincipalPermission(SecurityAction.Demand, Role = "ADMIN")]
         public List<ProjectDO> ReadAllProjectsForUserId(Guid userId)
         {
             return projectDAO.ReadAllProjectsForUserId(userId);

@@ -78,6 +78,10 @@
     <Compile Include="Migrations\201603071014390_Initial.Designer.cs">
       <DependentUpon>201603071014390_Initial.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201603162139198_User_Password.cs" />
+    <Compile Include="Migrations\201603162139198_User_Password.Designer.cs">
+      <DependentUpon>201603162139198_User_Password.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Model\CategoryDO.cs" />
     <Compile Include="Model\CompanyDO.cs" />
@@ -97,6 +101,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201603071014390_Initial.resx">
       <DependentUpon>201603071014390_Initial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201603162139198_User_Password.resx">
+      <DependentUpon>201603162139198_User_Password.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

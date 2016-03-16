@@ -20,6 +20,9 @@ namespace Com.Pinz.Server.DataAccess.Model
         [Required]
         public string EMail { get; set; }
 
+        [Required]
+        public string Password { get; set; }
+
         [DataMember]
         public string FirstName { get; set; }
 

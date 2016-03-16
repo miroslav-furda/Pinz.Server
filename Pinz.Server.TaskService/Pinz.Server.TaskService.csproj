@@ -145,10 +145,12 @@
       <DependentUpon>PinzAdminService.svc</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Security\PinzAuthorizationPolicy.cs" />
+    <Compile Include="Security\PinzCustomPrincipal.cs" />
     <Compile Include="TaskService.svc.cs">
       <DependentUpon>TaskService.svc</DependentUpon>
     </Compile>
-    <Compile Include="UserValidator.cs" />
+    <Compile Include="Security\UserSecurityValidator.cs" />
     <Compile Include="WebRole.cs" />
   </ItemGroup>
   <ItemGroup>
