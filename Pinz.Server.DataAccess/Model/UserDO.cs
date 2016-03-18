@@ -18,6 +18,8 @@ namespace Com.Pinz.Server.DataAccess.Model
 
         [DataMember]
         [Required]
+        [Index(IsUnique = true)]
+        [StringLength(50)]
         public string EMail { get; set; }
 
         [Required]
@@ -31,6 +33,9 @@ namespace Com.Pinz.Server.DataAccess.Model
 
         [DataMember]
         public bool IsCompanyAdmin { get; set; }
+
+        [DataMember]
+        public bool IsPinzSuperAdmin { get; set; }
 
         [DataMember]
         [Required]

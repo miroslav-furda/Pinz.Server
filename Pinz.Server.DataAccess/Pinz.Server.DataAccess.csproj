@@ -42,8 +42,8 @@
       <HintPath>..\packages\Ninject.3.2.2.0\lib\net45-full\Ninject.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Pinz.DomainModel, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Pinz.DomainModel.1.0.2\lib\net452\Pinz.DomainModel.dll</HintPath>
+    <Reference Include="Pinz.DomainModel, Version=1.0.4.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Pinz.DomainModel.1.0.4.0\lib\net452\Pinz.DomainModel.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
@@ -82,6 +82,10 @@
     <Compile Include="Migrations\201603162139198_User_Password.Designer.cs">
       <DependentUpon>201603162139198_User_Password.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201603181516170_User_PinzSuperadmin.cs" />
+    <Compile Include="Migrations\201603181516170_User_PinzSuperadmin.Designer.cs">
+      <DependentUpon>201603181516170_User_PinzSuperadmin.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Model\CategoryDO.cs" />
     <Compile Include="Model\CompanyDO.cs" />
@@ -104,6 +108,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201603162139198_User_Password.resx">
       <DependentUpon>201603162139198_User_Password.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201603181516170_User_PinzSuperadmin.resx">
+      <DependentUpon>201603181516170_User_PinzSuperadmin.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

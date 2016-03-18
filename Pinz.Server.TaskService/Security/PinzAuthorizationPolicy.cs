@@ -31,9 +31,9 @@ namespace Com.Pinz.Server.TaskService.Security
         public bool Evaluate(EvaluationContext evaluationContext, ref object state)
         {
             // get the authenticated client identity
-            IIdentity client = GetClientIdentity(evaluationContext);
+            IIdentity identity = GetClientIdentity(evaluationContext);
             // set the custom principal
-            evaluationContext.Properties["Principal"] = new PinzCustomPrincipal(client);
+            evaluationContext.Properties["Principal"] = new PinzCustomPrincipal(identity);
             return true;
         }
 
