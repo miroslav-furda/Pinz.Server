@@ -19,11 +19,11 @@ namespace Com.Pinz.Server.TaskService
 
         [OperationContract]
         [ApplyDataContractResolver]
-        List<ProjectDO> ReadAllProjectsForUserId(Guid userId);
+        List<ProjectDO> ReadAllProjectsForUserEmail(string email);
 
         [OperationContract]
         [ApplyDataContractResolver]
-        TaskDO CreateTask(TaskDO task);
+        TaskDO CreateTask(TaskDO task, string userEmail);
 
         [OperationContract]
         [ApplyDataContractResolver]

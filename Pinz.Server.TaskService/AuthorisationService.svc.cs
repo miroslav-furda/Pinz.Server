@@ -2,6 +2,7 @@
 using System.Runtime.Serialization;
 using Com.Pinz.Server.DataAccess.Model;
 using Com.Pinz.Server.DataAccess;
+using System.Security.Permissions;
 
 namespace Com.Pinz.Server.TaskService
 {
@@ -16,16 +17,19 @@ namespace Com.Pinz.Server.TaskService
             this.projectStaffDAO = projectStaffDAO;
         }
 
+        [PrincipalPermission(SecurityAction.Demand, Role = "USER")]
         public bool IsUserComapnyAdmin(Guid userId)
         {
             return userDAO.GetById(userId).IsCompanyAdmin;
         }
 
+        [PrincipalPermission(SecurityAction.Demand, Role = "USER")]
         public bool IsUserProjectAdmin(Guid userId, Guid projectId)
         {
             return projectStaffDAO.IsUserAdminInProject(userId, projectId);
         }
 
+        [PrincipalPermission(SecurityAction.Demand, Role = "USER")]
         public UserDO ReadUserByEmail(string email)
         {
             return userDAO.ReadByEmail(email);

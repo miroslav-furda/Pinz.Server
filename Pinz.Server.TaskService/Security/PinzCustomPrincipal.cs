@@ -22,21 +22,24 @@ namespace Com.Pinz.Server.TaskService.Security
             roles = new List<string>();
             if (Identity.IsAuthenticated)
             {
-                roles.Add("USER");
+                roles.Add(UserSecurityRole.USER.ToString());
             }
 
             UserDO user = dbContext.Users.Where(u => u.EMail == Identity.Name).Single();
-            if (user.IsCompanyAdmin)
-            {
-                roles.Add("COMPANY_ADMIN");
-            }
             if (user.ProjectStaff.Any(ps => ps.IsProjectAdmin == true))
             {
-                roles.Add("PROJECT_ADMIN");
+                roles.Add(UserSecurityRole.PROJECT_ADMIN.ToString());
+            }
+            if (user.IsCompanyAdmin)
+            {
+                roles.Add(UserSecurityRole.PROJECT_ADMIN.ToString());
+                roles.Add(UserSecurityRole.COMPANY_ADMIN.ToString());
             }
             if (user.IsPinzSuperAdmin)
             {
-                roles.Add("PINZ_SUPERADMIN");
+                roles.Add(UserSecurityRole.PROJECT_ADMIN.ToString());
+                roles.Add(UserSecurityRole.COMPANY_ADMIN.ToString());
+                roles.Add(UserSecurityRole.PINZ_SUPERADMIN.ToString());
             }
         }
 
