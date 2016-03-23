@@ -10,6 +10,12 @@ namespace Com.Pinz.Server.TaskService.Security
 {
     public class PinzCustomPrincipal : IPrincipal
     {
+        public static string USER = "USER";
+        public static string PROJECT_ADMIN = "PROJECT_ADMIN";
+        public static string COMPANY_ADMIN = "COMPANY_ADMIN";
+        public static string PINZ_SUPERADMIN = "PINZ_SUPERADMIN";
+
+
         public IIdentity Identity { get; }
         private List<string> roles;
 
@@ -22,24 +28,24 @@ namespace Com.Pinz.Server.TaskService.Security
             roles = new List<string>();
             if (Identity.IsAuthenticated)
             {
-                roles.Add(UserSecurityRole.USER.ToString());
+                roles.Add(USER);
             }
 
             UserDO user = dbContext.Users.Where(u => u.EMail == Identity.Name).Single();
             if (user.ProjectStaff.Any(ps => ps.IsProjectAdmin == true))
             {
-                roles.Add(UserSecurityRole.PROJECT_ADMIN.ToString());
+                roles.Add(PROJECT_ADMIN);
             }
             if (user.IsCompanyAdmin)
             {
-                roles.Add(UserSecurityRole.PROJECT_ADMIN.ToString());
-                roles.Add(UserSecurityRole.COMPANY_ADMIN.ToString());
+                roles.Add(PROJECT_ADMIN);
+                roles.Add(COMPANY_ADMIN);
             }
             if (user.IsPinzSuperAdmin)
             {
-                roles.Add(UserSecurityRole.PROJECT_ADMIN.ToString());
-                roles.Add(UserSecurityRole.COMPANY_ADMIN.ToString());
-                roles.Add(UserSecurityRole.PINZ_SUPERADMIN.ToString());
+                roles.Add(PROJECT_ADMIN);
+                roles.Add(COMPANY_ADMIN);
+                roles.Add(PINZ_SUPERADMIN);
             }
         }
 
