@@ -100,5 +100,18 @@ namespace Com.Pinz.Server.TaskService
             return userDAO.Update(originlUser);
         }
 
+        [PrincipalPermission(SecurityAction.Demand, Role = "USER")]
+        public bool ChangeUserPassword(Guid userId, string oldPassword, string newPassword, string newPassword2)
+        {
+            UserDO originalUser = userDAO.GetById(userId);
+            if( !String.IsNullOrEmpty(oldPassword) && !String.IsNullOrEmpty(newPassword) && !String.IsNullOrEmpty(newPassword2)
+                && newPassword.Length >= 6 && oldPassword.Equals(originalUser.Password) && newPassword.Equals(newPassword2))
+            {
+                originalUser.Password = newPassword;
+                userDAO.Update(originalUser);
+                return true;
+            }
+            return false;
+        }
     }
 }

@@ -9,6 +9,10 @@ namespace Com.Pinz.Server.TaskService
     [ServiceContract(Namespace = "http://pinzonline.com/services")]
     public interface IAdministrationService
     {
+
+        [OperationContract]
+        bool ChangeUserPassword(Guid userId, string oldPassword, string newPassword, string newPassword2);
+
         [OperationContract]
         [ApplyDataContractResolver]
         List<ProjectDO> ReadProjectsForCompanyId(Guid companyId);
