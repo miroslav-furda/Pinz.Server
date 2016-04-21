@@ -139,6 +139,8 @@
     <Compile Include="IAdministrationService.cs" />
     <Compile Include="IAuthorisationService.cs" />
     <Compile Include="Infrastructure\ApplyDataContractResolverAttribute.cs" />
+    <Compile Include="InviteUser\InvitationEmailSender.cs" />
+    <Compile Include="InviteUser\RandomPassword.cs" />
     <Compile Include="IPinzAdminService.cs" />
     <Compile Include="ITaskService.cs" />
     <Compile Include="PinzAdminService.svc.cs">
@@ -160,6 +162,7 @@
   <ItemGroup>
     <Content Include="AdministrationService.svc" />
     <Content Include="AuthorisationService.svc" />
+    <Content Include="InviteUser\invitationEmail.html" />
     <Content Include="packages.config">
       <SubType>Designer</SubType>
     </Content>

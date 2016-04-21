@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pinz.Server.TaskService", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pinz.Server.DataAccess", "Pinz.Server.DataAccess\Pinz.Server.DataAccess.csproj", "{8FE59BF5-9E7B-4DFF-94D6-B9832036ABF4}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pinz.Server.TaskService.UnitTest", "Pinz.Server.TaskService.UnitTest\Pinz.Server.TaskService.UnitTest.csproj", "{BA4500E3-EB84-4257-A2E1-CA9987D9A786}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{8FE59BF5-9E7B-4DFF-94D6-B9832036ABF4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8FE59BF5-9E7B-4DFF-94D6-B9832036ABF4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8FE59BF5-9E7B-4DFF-94D6-B9832036ABF4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BA4500E3-EB84-4257-A2E1-CA9987D9A786}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BA4500E3-EB84-4257-A2E1-CA9987D9A786}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BA4500E3-EB84-4257-A2E1-CA9987D9A786}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BA4500E3-EB84-4257-A2E1-CA9987D9A786}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

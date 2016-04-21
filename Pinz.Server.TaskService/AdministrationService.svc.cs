@@ -5,6 +5,7 @@ using Com.Pinz.Server.DataAccess.Model;
 using Com.Pinz.Server.DataAccess;
 using Ninject;
 using System.Security.Permissions;
+using Com.Pinz.Server.TaskService.InviteUser;
 
 namespace Com.Pinz.Server.TaskService
 {
@@ -112,6 +113,49 @@ namespace Com.Pinz.Server.TaskService
                 return true;
             }
             return false;
+        }
+
+        [PrincipalPermission(SecurityAction.Demand, Role = "USER")]
+        public List<ProjectDO> ReadAdminProjectsForUser(Guid userId)
+        {
+            return projectDAO.ReadAdminProjectsForUserId(userId);
+        }
+
+        [PrincipalPermission(SecurityAction.Demand, Role = "USER")]
+        public List<UserDO> ReadAllUsersByProject(Guid projectId)
+        {
+            return userDAO.ReadAllUsersInProject(projectId);
+        }
+
+        [PrincipalPermission(SecurityAction.Demand, Role = "PROJECT_ADMIN")]
+        public void SetProjectAdminFlag(Guid userId, Guid projectId, bool isProjectAdmin)
+        {
+            ProjectStaffDO ps = projectStaffDAO.GetById(userId, projectId);
+            ps.IsProjectAdmin = isProjectAdmin;
+            projectStaffDAO.Update(ps);
+        }
+
+        [PrincipalPermission(SecurityAction.Demand, Role = "PROJECT_ADMIN")]
+        public UserDO InviteNewUser(string newUserEmail, Guid projectId, Guid invitingUserId)
+        {
+            ProjectDO project = projectDAO.GetById(projectId);
+            UserDO invitingUser = userDAO.GetById(invitingUserId);
+
+            string generatedPassword = RandomPassword.Generate();
+            UserDO user = new UserDO()
+            {
+                EMail = newUserEmail,
+                IsCompanyAdmin = false,
+                IsPinzSuperAdmin = false,
+                CompanyId = invitingUser.CompanyId,
+                Password = generatedPassword
+            };
+            user = userDAO.Create(user);
+            AddUserToProject(user.UserId, projectId, false);
+
+            InvitationEmailSender.Send(newUserEmail, invitingUser, project, generatedPassword);
+
+            return user;
         }
     }
 }

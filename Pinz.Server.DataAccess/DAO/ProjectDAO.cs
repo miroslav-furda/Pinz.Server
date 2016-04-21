@@ -27,5 +27,15 @@ namespace Com.Pinz.Server.DataAccess.DAO
         {
             return context.Projects;
         }
+
+        public List<ProjectDO> ReadAdminProjectsForUserId(Guid userId)
+        {
+            return GetDbSet().Where(p => p.ProjectStaff.Any(ps => ps.UserId == userId && ps.IsProjectAdmin == true)).ToList();
+        }
+
+        public ProjectDO GetById(Guid projectId)
+        {
+            return GetDbSet().Where(p => p.ProjectId == projectId).Single();
+        }
     }
 }

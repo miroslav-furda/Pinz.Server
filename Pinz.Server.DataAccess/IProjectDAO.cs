@@ -8,5 +8,7 @@ namespace Com.Pinz.Server.DataAccess
     {
         List<ProjectDO> ReadProjectsForCompanyId(Guid companyId);
         List<ProjectDO> ReadAllProjectsForUserId(Guid userId);
+        List<ProjectDO> ReadAdminProjectsForUserId(Guid userId);
+        ProjectDO GetById(Guid projectId);
     }
 }
