@@ -1,4 +1,4 @@
-﻿using Com.Pinzonline.DomainModel;
+﻿using Com.Pinz.DomainModel;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;

@@ -3,7 +3,10 @@ using Ninject;
 using Com.Pinz.Server.DataAccess;
 using Com.Pinz.Server.DataAccess.Model;
 using System;
+using System.Linq;
 using System.Security.Permissions;
+using Com.Pinz.DomainModel;
+using System.ComponentModel.DataAnnotations;
 
 namespace Com.Pinz.Server.TaskService
 {
@@ -77,7 +80,16 @@ namespace Com.Pinz.Server.TaskService
         [PrincipalPermission(SecurityAction.Demand, Role = "USER")]
         public void DeleteCategory(CategoryDO category)
         {
-            categoryDAO.Delete(category);
+            List<TaskDO> tasks = taskDAO.ReadAllByCategoryId(category.CategoryId);
+            if (tasks.Any(t => t.Status != TaskStatus.TaskComplete))
+            {
+                throw new ValidationException("Category contains active tasks!");
+
+            }
+            else
+            {
+                categoryDAO.Delete(category);
+            }
         }
     }
 }
