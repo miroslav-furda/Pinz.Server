@@ -42,8 +42,8 @@
       <HintPath>..\packages\Ninject.3.2.2.0\lib\net45-full\Ninject.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Pinz.DomainModel, Version=0.2.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Pinz.DomainModel.0.2.0.0\lib\net452\Pinz.DomainModel.dll</HintPath>
+    <Reference Include="Pinz.DomainModel, Version=0.3.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Pinz.DomainModel.0.3.0.0\lib\net452\Pinz.DomainModel.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
@@ -91,6 +91,7 @@
     <Compile Include="Model\CompanyDO.cs" />
     <Compile Include="Model\ProjectDO.cs" />
     <Compile Include="Model\ProjectStaffDO.cs" />
+    <Compile Include="Model\ProjectUserDO.cs" />
     <Compile Include="Model\TaskDO.cs" />
     <Compile Include="Db\PinzDbContext.cs" />
     <Compile Include="Model\UserDO.cs" />

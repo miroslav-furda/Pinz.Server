@@ -28,13 +28,12 @@ namespace Com.Pinz.Server.DataAccess.DAO
         {
             List<ProjectStaffDO> psList = GetDbSet().Where(ps => ps.ProjectId == projectId).ToList();
             List<ProjectUserDO> projectUserList = new List<ProjectUserDO>();
-            psList.ForEach(ps =>
-           {
-               ProjectUserDO puDO = new ProjectUserDO(ps.User);
-               puDO.IsProjectAdmin = ps.IsProjectAdmin;
-               projectUserList.Add(puDO);
-           });
-
+            foreach (ProjectStaffDO psDO in psList)
+            {
+                ProjectUserDO puDO = new ProjectUserDO(psDO.User);
+                puDO.IsProjectAdmin = psDO.IsProjectAdmin;
+                projectUserList.Add(puDO);
+            }
             return projectUserList;
         }
 

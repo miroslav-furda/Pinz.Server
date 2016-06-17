@@ -1,14 +1,13 @@
 ﻿using Com.Pinz.DomainModel;
+using System;
+using System.ComponentModel.DataAnnotations;
 using System.Runtime.Serialization;
 
 namespace Com.Pinz.Server.DataAccess.Model
 {
     [DataContract]
-    public class ProjectUserDO : UserDO, IProjectUser
+    public class ProjectUserDO : IProjectUser
     {
-        [DataMember]
-        public bool IsProjectAdmin { get; set; }
-
         public ProjectUserDO(UserDO user)
         {
             UserId = user.UserId;
@@ -19,5 +18,34 @@ namespace Com.Pinz.Server.DataAccess.Model
             IsCompanyAdmin = user.IsCompanyAdmin;
             IsPinzSuperAdmin = user.IsPinzSuperAdmin;
         }
+
+        [DataMember]
+        public Guid UserId { get; set; }
+
+        [DataMember]
+        public Guid CompanyId { get; set; }
+
+        [DataMember]
+        [Required]
+        [StringLength(50)]
+        public string EMail { get; set; }
+
+        [Required]
+        public string Password { get; set; }
+
+        [DataMember]
+        public string FirstName { get; set; }
+
+        [DataMember]
+        public string FamilyName { get; set; }
+
+        [DataMember]
+        public bool IsCompanyAdmin { get; set; }
+
+        [DataMember]
+        public bool IsPinzSuperAdmin { get; set; }
+
+        [DataMember]
+        public bool IsProjectAdmin { get; set; }
     }
 }

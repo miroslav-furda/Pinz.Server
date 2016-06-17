@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
-VisualStudioVersion = 14.0.24720.0
+VisualStudioVersion = 14.0.25123.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{CC5FD16D-436D-48AD-A40C-5A424C6E3E79}") = "Pinz.Server.Azure", "Pinz.Server.Azure\Pinz.Server.Azure.ccproj", "{01B7D7A6-34A0-43F4-8FC5-0B23153118F4}"
 EndProject
