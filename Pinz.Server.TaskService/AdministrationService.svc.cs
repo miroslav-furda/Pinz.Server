@@ -128,6 +128,12 @@ namespace Com.Pinz.Server.TaskService
         }
 
         [PrincipalPermission(SecurityAction.Demand, Role = "PROJECT_ADMIN")]
+        public List<ProjectUserDO> ReadAllProjectUsersInProject(Guid projectId)
+        {
+            return projectStaffDAO.ReadAllProjectUsersInProject(projectId);
+        }
+
+        [PrincipalPermission(SecurityAction.Demand, Role = "PROJECT_ADMIN")]
         public void SetProjectAdminFlag(Guid userId, Guid projectId, bool isProjectAdmin)
         {
             ProjectStaffDO ps = projectStaffDAO.GetById(userId, projectId);

@@ -28,6 +28,10 @@ namespace Com.Pinz.Server.TaskService
 
         [OperationContract]
         [ApplyDataContractResolver]
+        List<ProjectUserDO> ReadAllProjectUsersInProject(Guid projectId);
+
+        [OperationContract]
+        [ApplyDataContractResolver]
         List<ProjectDO> ReadProjectsForCompanyId(Guid companyId);
 
         [OperationContract]

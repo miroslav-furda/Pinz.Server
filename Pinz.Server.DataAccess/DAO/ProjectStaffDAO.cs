@@ -4,6 +4,7 @@ using System.Linq;
 using System.Data.Entity;
 using Com.Pinz.Server.DataAccess.Db;
 using Ninject;
+using System.Collections.Generic;
 
 namespace Com.Pinz.Server.DataAccess.DAO
 {
@@ -21,6 +22,20 @@ namespace Com.Pinz.Server.DataAccess.DAO
         {
             ProjectStaffDO staffing = GetDbSet().Where(ps => ps.UserId == userid && ps.ProjectId == projectId).SingleOrDefault();
             return staffing != null ? staffing.IsProjectAdmin : false;
+        }
+
+        public List<ProjectUserDO> ReadAllProjectUsersInProject(Guid projectId)
+        {
+            List<ProjectStaffDO> psList = GetDbSet().Where(ps => ps.ProjectId == projectId).ToList();
+            List<ProjectUserDO> projectUserList = new List<ProjectUserDO>();
+            psList.ForEach(ps =>
+           {
+               ProjectUserDO puDO = new ProjectUserDO(ps.User);
+               puDO.IsProjectAdmin = ps.IsProjectAdmin;
+               projectUserList.Add(puDO);
+           });
+
+            return projectUserList;
         }
 
         protected override DbSet<ProjectStaffDO> GetDbSet()
