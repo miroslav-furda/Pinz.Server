@@ -2,9 +2,11 @@
 using Com.Pinz.Server.DataAccess;
 using Ninject;
 using System.Security.Permissions;
+using Com.Pinz.Server.TaskService.Infrastructure;
 
 namespace Com.Pinz.Server.TaskService
 {
+    [GlobalErrorBehavior(typeof(GlobalErrorHandler))]
     public class PinzAdminService : IPinzAdminService
     {
         private ICompanyDAO companyDAO;

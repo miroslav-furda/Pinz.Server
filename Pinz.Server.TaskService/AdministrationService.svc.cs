@@ -6,9 +6,11 @@ using Com.Pinz.Server.DataAccess;
 using Ninject;
 using System.Security.Permissions;
 using Com.Pinz.Server.TaskService.InviteUser;
+using Com.Pinz.Server.TaskService.Infrastructure;
 
 namespace Com.Pinz.Server.TaskService
 {
+    [GlobalErrorBehavior(typeof(GlobalErrorHandler))]
     public class AdministrationService : IAdministrationService
     {
         private IProjectDAO projectDAO;
@@ -105,7 +107,7 @@ namespace Com.Pinz.Server.TaskService
         public bool ChangeUserPassword(Guid userId, string oldPassword, string newPassword, string newPassword2)
         {
             UserDO originalUser = userDAO.GetById(userId);
-            if( !String.IsNullOrEmpty(oldPassword) && !String.IsNullOrEmpty(newPassword) && !String.IsNullOrEmpty(newPassword2)
+            if (!String.IsNullOrEmpty(oldPassword) && !String.IsNullOrEmpty(newPassword) && !String.IsNullOrEmpty(newPassword2)
                 && newPassword.Length >= 6 && oldPassword.Equals(originalUser.Password) && newPassword.Equals(newPassword2))
             {
                 originalUser.Password = newPassword;

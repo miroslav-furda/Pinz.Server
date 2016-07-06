@@ -7,9 +7,11 @@ using System.Linq;
 using System.Security.Permissions;
 using Com.Pinz.DomainModel;
 using System.ComponentModel.DataAnnotations;
+using Com.Pinz.Server.TaskService.Infrastructure;
 
 namespace Com.Pinz.Server.TaskService
 {
+    [GlobalErrorBehavior(typeof(GlobalErrorHandler))]
     public class TaskService : ITaskService
     {
         private ITaskDAO taskDAO;

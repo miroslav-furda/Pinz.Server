@@ -3,9 +3,11 @@ using System.Runtime.Serialization;
 using Com.Pinz.Server.DataAccess.Model;
 using Com.Pinz.Server.DataAccess;
 using System.Security.Permissions;
+using Com.Pinz.Server.TaskService.Infrastructure;
 
 namespace Com.Pinz.Server.TaskService
 {
+    [GlobalErrorBehavior(typeof(GlobalErrorHandler))]
     public class AuthorisationService : IAuthorisationService
     {
         private IUserDAO userDAO;
