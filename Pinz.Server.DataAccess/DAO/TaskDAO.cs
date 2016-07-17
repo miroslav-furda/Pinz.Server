@@ -18,6 +18,11 @@ namespace Com.Pinz.Server.DataAccess.DAO
             return context.Tasks.Where(t => t.CategoryId == categoryId).ToList();
         }
 
+        public List<TaskDO> ReadAllUserTasks(Guid userId)
+        {
+            return GetDbSet().Where(t => t.UserId == userId).ToList();
+        }
+
         protected override DbSet<TaskDO> GetDbSet()
         {
             return context.Tasks;

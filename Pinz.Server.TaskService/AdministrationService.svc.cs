@@ -15,16 +15,19 @@ namespace Com.Pinz.Server.TaskService
     {
         private IProjectDAO projectDAO;
         private IUserDAO userDAO;
+        private ITaskDAO taskDAO;
         private ICompanyDAO companyDAO;
         private IProjectStaffDAO projectStaffDAO;
 
         [Inject]
-        public AdministrationService(IProjectDAO projectDAO, IUserDAO userDAO, ICompanyDAO companyDAO, IProjectStaffDAO projectStaffDAO)
+        public AdministrationService(IProjectDAO projectDAO, IUserDAO userDAO, ICompanyDAO companyDAO, 
+            IProjectStaffDAO projectStaffDAO, ITaskDAO taskDAO)
         {
             this.projectDAO = projectDAO;
             this.userDAO = userDAO;
             this.companyDAO = companyDAO;
             this.projectStaffDAO = projectStaffDAO;
+            this.taskDAO = taskDAO;
         }
 
         [PrincipalPermission(SecurityAction.Demand, Role = "COMPANY_ADMIN")]
@@ -84,6 +87,16 @@ namespace Com.Pinz.Server.TaskService
         [PrincipalPermission(SecurityAction.Demand, Role = "COMPANY_ADMIN")]
         public void DeleteUser(UserDO user)
         {
+            projectStaffDAO.DeleteAllStaffingForUser(user.UserId);
+
+            var usersTasks = taskDAO.ReadAllUserTasks(user.UserId);
+            foreach(var task in usersTasks)
+            {
+                task.UserId = null;
+                task.User = null;
+                taskDAO.Update(task);
+            }
+
             userDAO.Delete(user);
         }
 
@@ -120,7 +133,17 @@ namespace Com.Pinz.Server.TaskService
         [PrincipalPermission(SecurityAction.Demand, Role = "USER")]
         public List<ProjectDO> ReadAdminProjectsForUser(Guid userId)
         {
-            return projectDAO.ReadAdminProjectsForUserId(userId);
+            List<ProjectDO> projects;
+            UserDO user = userDAO.GetById(userId);
+            if (user.IsCompanyAdmin)
+            {
+                projects = projectDAO.ReadProjectsForCompanyId(user.CompanyId);
+            }
+            else
+            {
+                projects = projectDAO.ReadAdminProjectsForUserId(userId);
+            }
+            return projects;
         }
 
         [PrincipalPermission(SecurityAction.Demand, Role = "USER")]

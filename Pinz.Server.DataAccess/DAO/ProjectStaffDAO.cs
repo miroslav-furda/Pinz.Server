@@ -13,6 +13,13 @@ namespace Com.Pinz.Server.DataAccess.DAO
         [Inject]
         public ProjectStaffDAO(PinzDbContext context) : base(context) { }
 
+        public void DeleteAllStaffingForUser(Guid userId)
+        {
+            var staffingToDelete = GetDbSet().Where(ps => ps.UserId == userId);
+            foreach (var entity in staffingToDelete)
+                Delete(entity);
+        }
+
         public ProjectStaffDO GetById(Guid userId, Guid projectId)
         {
             return GetDbSet().Where(ps => ps.UserId == userId && ps.ProjectId == projectId).Single();

@@ -7,5 +7,6 @@ namespace Com.Pinz.Server.DataAccess
     public interface ITaskDAO : IBasicDAO<TaskDO>
     {
         List<TaskDO> ReadAllByCategoryId(Guid categoryId);
+        List<TaskDO> ReadAllUserTasks(Guid userId);
     }
 }

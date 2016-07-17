@@ -9,5 +9,7 @@ namespace Com.Pinz.Server.DataAccess
         bool IsUserAdminInProject(Guid userId, Guid projectId);
         ProjectStaffDO GetById(Guid userId, Guid projectId);
         List<ProjectUserDO> ReadAllProjectUsersInProject(Guid projectId);
+
+        void DeleteAllStaffingForUser(Guid userId);
     }
 }

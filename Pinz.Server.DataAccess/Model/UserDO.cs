@@ -18,6 +18,7 @@ namespace Com.Pinz.Server.DataAccess.Model
 
         [DataMember]
         [Required]
+        [EmailAddress]
         [Index(IsUnique = true)]
         [StringLength(50)]
         public string EMail { get; set; }
