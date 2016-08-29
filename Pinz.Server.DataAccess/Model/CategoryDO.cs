@@ -26,7 +26,7 @@ namespace Com.Pinz.Server.DataAccess.Model
         [ForeignKey("ProjectId")]
         public virtual ProjectDO Project { get; set; }
 
-
+        [DataMember]
         public virtual List<TaskDO> Tasks { get; set; }
 
     }

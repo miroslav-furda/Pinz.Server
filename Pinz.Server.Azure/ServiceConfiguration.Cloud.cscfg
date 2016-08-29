@@ -7,7 +7,7 @@
       <Setting name="APPINSIGHTS_INSTRUMENTATIONKEY" value="18b0b26d-5839-4f6a-8fb9-0da40f68a001" />
     </ConfigurationSettings>
     <Certificates>
-      <Certificate name="SSLCertificate" thumbprint="B4415A0AB7E9297E03A90E260D90740412353F87" thumbprintAlgorithm="sha1" />
+      <Certificate name="SSLCertificate" thumbprint="D01DB8BA64732FC73437A566937E8B771DEE09E3" thumbprintAlgorithm="sha1" />
     </Certificates>
   </Role>
 </ServiceConfiguration>
