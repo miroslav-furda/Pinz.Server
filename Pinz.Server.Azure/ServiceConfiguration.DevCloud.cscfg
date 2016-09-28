@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ServiceConfiguration serviceName="OP.AzureService" xmlns="http://schemas.microsoft.com/ServiceHosting/2008/10/ServiceConfiguration" osFamily="4" osVersion="*" schemaVersion="2015-04.2.6">
+  <Role name="Pinz.Server.TaskService">
+    <Instances count="1" />
+    <ConfigurationSettings>
+      <Setting name="Microsoft.WindowsAzure.Plugins.Diagnostics.ConnectionString" value="DefaultEndpointsProtocol=https;AccountName=pinzdevwestorage;AccountKey=RVqI8CiE7MHR1S/ncwFsZfaAUMcoT98kn6OiwgJ/UhVNz9Ug94CQHas6G5k3AN448oA5X09Qn1fDrFtCwpezhg==" />
+      <Setting name="APPINSIGHTS_INSTRUMENTATIONKEY" value="18b0b26d-5839-4f6a-8fb9-0da40f68a001" />
+    </ConfigurationSettings>
+    <Certificates>
+      <Certificate name="SSLCertificate" thumbprint="D01DB8BA64732FC73437A566937E8B771DEE09E3" thumbprintAlgorithm="sha1" />
+    </Certificates>
+  </Role>
+</ServiceConfiguration>

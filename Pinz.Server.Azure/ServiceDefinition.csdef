@@ -20,5 +20,8 @@
     <Certificates>
       <Certificate name="SSLCertificate" storeLocation="LocalMachine" storeName="My" />
     </Certificates>
+    <Startup>
+      <Task commandLine="Startup\Startup.cmd" executionContext="elevated" />
+    </Startup>
   </WebRole>
 </ServiceDefinition>
