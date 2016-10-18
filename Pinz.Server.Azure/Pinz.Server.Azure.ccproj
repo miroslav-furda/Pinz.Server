@@ -36,7 +36,7 @@
     <ServiceDefinition Include="ServiceDefinition.csdef" />
     <ServiceConfiguration Include="ServiceConfiguration.DevCloud.cscfg" />
     <ServiceConfiguration Include="ServiceConfiguration.Local.cscfg" />
-    <ServiceConfiguration Include="ServiceConfiguration.Cloud.cscfg" />
+    <ServiceConfiguration Include="ServiceConfiguration.ProdCloud.cscfg" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Pinz.Server.TaskServiceContent\" />
@@ -56,9 +56,8 @@
     <DiagnosticsConfiguration Include="Pinz.Server.TaskServiceContent\diagnostics.wadcfgx" />
   </ItemGroup>
   <ItemGroup>
-    <PublishProfile Include="Profiles\pinzDevServiceStaging.azurePubxml" />
-    <PublishProfile Include="Profiles\pinzWEService.azurePubxml" />
-    <PublishProfile Include="Profiles\pinzDEVService.azurePubxml" />
+    <PublishProfile Include="Profiles\pinzDevServiceProd.azurePubxml" />
+    <PublishProfile Include="Profiles\pinzProdStaging.azurePubxml" />
   </ItemGroup>
   <!-- Import the target files for this project template -->
   <PropertyGroup>
