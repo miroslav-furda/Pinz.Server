@@ -23,6 +23,8 @@
     <IISExpressUseClassicPipelineMode />
     <UseGlobalApplicationHostFile />
     <ApplicationInsightsResourceId>/subscriptions/a61a6441-ef70-4359-91ea-f5105cf60b48/resourcegroups/Default-ApplicationInsights-CentralUS/providers/microsoft.insights/components/Pinz.Server.TaskService</ApplicationInsightsResourceId>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -176,6 +178,10 @@
     <Reference Include="System.Web.Services" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Xml.Linq" />
+    <Reference Include="ToString, Version=1.7.3.0, Culture=neutral, PublicKeyToken=15432f00798e61a4, processorArchitecture=MSIL">
+      <HintPath>..\packages\ToString.Fody.1.7.3.0\lib\dotnet\ToString.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
     <Reference Include="WebActivatorEx, Version=2.0.0.0, Culture=neutral, PublicKeyToken=7b26dc2a43f6a0d4, processorArchitecture=MSIL">
       <HintPath>..\packages\WebActivatorEx.2.1.0\lib\net40\WebActivatorEx.dll</HintPath>
       <Private>True</Private>
@@ -188,6 +194,12 @@
     <Compile Include="App_Start\NinjectWebCommon.cs" />
     <Compile Include="AuthorisationService.svc.cs">
       <DependentUpon>AuthorisationService.svc</DependentUpon>
+    </Compile>
+    <Compile Include="FastSpring\Customer.cs" />
+    <Compile Include="FastSpring\ISubscriptionNotificationService.cs" />
+    <Compile Include="FastSpring\Subscription.cs" />
+    <Compile Include="FastSpring\SubscriptionNotificationService.svc.cs">
+      <DependentUpon>SubscriptionNotificationService.svc</DependentUpon>
     </Compile>
     <Compile Include="IAdministrationService.cs" />
     <Compile Include="IAuthorisationService.cs" />
@@ -217,6 +229,8 @@
   <ItemGroup>
     <Content Include="AdministrationService.svc" />
     <Content Include="AuthorisationService.svc" />
+    <Content Include="FastSpring\SubscriptionNotificationService.svc" />
+    <Content Include="FodyWeavers.xml" />
     <Content Include="InviteUser\invitationEmail.html" />
     <Content Include="packages.config">
       <SubType>Designer</SubType>
@@ -302,5 +316,12 @@
   <Target Name="AfterBuild" Condition="Exists('Web.$(Configuration).config')">
     <!--Generate transformed config in the output directory-->
     <TransformXml Source="Web.config" Destination="$(OutputPath)Web.config" Transform="Web.$(Configuration).config" />
+  </Target>
+  <Import Project="..\packages\Fody.1.29.2\build\dotnet\Fody.targets" Condition="Exists('..\packages\Fody.1.29.2\build\dotnet\Fody.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\Fody.1.29.2\build\dotnet\Fody.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Fody.1.29.2\build\dotnet\Fody.targets'))" />
   </Target>
 </Project>
