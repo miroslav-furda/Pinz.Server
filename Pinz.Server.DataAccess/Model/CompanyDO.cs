@@ -23,5 +23,10 @@ namespace Com.Pinz.Server.DataAccess.Model
         public virtual List<UserDO> Users { get; set; }
 
         public virtual List<ProjectDO> Projects { get; set; }
+
+        [Required]
+        public Guid SubscriptionId { get; set; }
+        [ForeignKey("SubscriptionReference")]
+        public virtual SubscriptionDO Subscription { get; set; }
     }
 }

@@ -20,7 +20,7 @@ namespace Com.Pinz.Server.TaskService.InviteUser
                 Name = "testProject"
             };
 
-            InvitationEmailSender.Send("miroslav.furda@senacor.com", invitingUser, project, "generatedPassword");
+            InvitationEmailSender.SendProjectInvitation("miroslav.furda@senacor.com", invitingUser, project, "generatedPassword");
         }
     }
 }

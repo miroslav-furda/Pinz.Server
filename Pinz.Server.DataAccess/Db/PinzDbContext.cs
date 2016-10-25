@@ -21,6 +21,7 @@ namespace Com.Pinz.Server.DataAccess.Db
         public DbSet<ProjectStaffDO> ProjectStaff { get; set; }
         public DbSet<CompanyDO> Companies { get; set; }
         public DbSet<UserDO> Users { get; set; }
+        public DbSet<SubscriptionDO> Subscriptions { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

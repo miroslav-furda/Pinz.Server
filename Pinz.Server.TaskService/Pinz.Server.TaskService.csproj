@@ -231,6 +231,7 @@
     <Content Include="AuthorisationService.svc" />
     <Content Include="FastSpring\SubscriptionNotificationService.svc" />
     <Content Include="FodyWeavers.xml" />
+    <Content Include="InviteUser\newCustomerEmail.html" />
     <Content Include="InviteUser\invitationEmail.html" />
     <Content Include="packages.config">
       <SubType>Designer</SubType>

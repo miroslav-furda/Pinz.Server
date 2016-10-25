@@ -33,6 +33,9 @@ namespace Com.Pinz.Server.DataAccess.Model
         public string FamilyName { get; set; }
 
         [DataMember]
+        public string PhoneNumber { get; set; }
+
+        [DataMember]
         public bool IsCompanyAdmin { get; set; }
 
         [DataMember]

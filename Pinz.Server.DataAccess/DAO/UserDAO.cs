@@ -15,7 +15,7 @@ namespace Com.Pinz.Server.DataAccess.DAO
 
         public UserDO GetById(Guid userId)
         {
-            return GetDbSet().Where( u => u.UserId == userId).Single();
+            return GetDbSet( ).Single(u => u.UserId == userId);
         }
 
         public List<UserDO> ReadAllUsersInCompany(Guid companyId)
@@ -30,7 +30,7 @@ namespace Com.Pinz.Server.DataAccess.DAO
 
         public UserDO ReadByEmail(string email)
         {
-            return GetDbSet().Where(u => u.EMail == email).SingleOrDefault();
+            return GetDbSet().SingleOrDefault(u => u.EMail == email);
         }
 
         protected override DbSet<UserDO> GetDbSet()

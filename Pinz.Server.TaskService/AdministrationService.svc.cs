@@ -184,7 +184,7 @@ namespace Com.Pinz.Server.TaskService
             user = userDAO.Create(user);
             AddUserToProject(user.UserId, projectId, false);
 
-            InvitationEmailSender.Send(newUserEmail, invitingUser, project, generatedPassword);
+            InvitationEmailSender.SendProjectInvitation(newUserEmail, invitingUser, project, generatedPassword);
 
             return user;
         }

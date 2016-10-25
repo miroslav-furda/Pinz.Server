@@ -81,6 +81,7 @@
     <Compile Include="DAO\CompanyDAO.cs" />
     <Compile Include="DAO\ProjectDAO.cs" />
     <Compile Include="DAO\ProjectStaffDAO.cs" />
+    <Compile Include="DAO\SubscriptionDAO.cs" />
     <Compile Include="DAO\TaskDAO.cs" />
     <Compile Include="DAO\UserDAO.cs" />
     <Compile Include="DataAccessNinjectModule.cs" />
@@ -89,6 +90,7 @@
     <Compile Include="ICompanyDAO.cs" />
     <Compile Include="IProjectDAO.cs" />
     <Compile Include="IProjectStaffDAO.cs" />
+    <Compile Include="ISubscriptionDAO.cs" />
     <Compile Include="ITaskDAO.cs" />
     <Compile Include="IUserDAO.cs" />
     <Compile Include="Migrations\201603071014390_Initial.cs" />
@@ -109,6 +111,7 @@
     <Compile Include="Model\ProjectDO.cs" />
     <Compile Include="Model\ProjectStaffDO.cs" />
     <Compile Include="Model\ProjectUserDO.cs" />
+    <Compile Include="Model\SubscriptionDO.cs" />
     <Compile Include="Model\TaskDO.cs" />
     <Compile Include="Db\PinzDbContext.cs" />
     <Compile Include="Model\UserDO.cs" />
