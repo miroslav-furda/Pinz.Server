@@ -2,7 +2,6 @@
 
 namespace Com.Pinz.Server.TaskService.FastSpring
 {
-    [ToString]
     public class Customer
     {
         [XmlElement("firstName")]
@@ -19,5 +18,10 @@ namespace Com.Pinz.Server.TaskService.FastSpring
 
         [XmlElement("phoneNumber")]
         public string PhoneNumber { get; set; }
+
+        public override string ToString()
+        {
+            return $"{nameof(FirstName)}: {FirstName}, {nameof(LastName)}: {LastName}, {nameof(Company)}: {Company}, {nameof(Email)}: {Email}, {nameof(PhoneNumber)}: {PhoneNumber}";
+        }
     }
 }

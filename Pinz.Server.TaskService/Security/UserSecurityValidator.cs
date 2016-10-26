@@ -1,4 +1,5 @@
-﻿using Com.Pinz.Server.DataAccess.Db;
+﻿using System;
+using Com.Pinz.Server.DataAccess.Db;
 using System.Linq;
 using System.IdentityModel.Selectors;
 using System.IdentityModel.Tokens;
@@ -16,10 +17,25 @@ namespace Com.Pinz.Server.TaskService.Security
 
 
             PinzDbContext dbContext = new PinzDbContext();
-            UserDO user = dbContext.Users.Where(u => u.EMail == userName && u.Password == password).SingleOrDefault();
+            UserDO user = dbContext.Users.SingleOrDefault(u => u.EMail == userName && u.Password == password);
+            if (user == null)
+            {
+                throw new FaultException($"Wrong username ({userName}) or password");
+            }
+            else if (user.Company.Subscription.Status == SubscriptionStatus.Inactive )
+            {
+                SubscriptionDO subscription = user.Company.Subscription;
+                if (subscription.StatusReason != null && subscription.StatusReason == SubscriptionStatusReason.Canceled &&
+                    subscription.End.AddMonths(1) < DateTime.Today)
+                {
+                    throw new FaultException($"Subscription for Company ({user.Company}) has been canceled.");
+                }else if (subscription.StatusReason != null && subscription.StatusReason == SubscriptionStatusReason.Canceled &&
+                    subscription.End.AddMonths(2) < DateTime.Today)
+                {
+                    throw new FaultException($"Payment for Company ({user.Company}) could NOT be processed.");
+                }
 
-            if (user == null )
-                throw new FaultException(string.Format("Wrong username ({0}) or password ", userName));
+            }
         }
     }
 }

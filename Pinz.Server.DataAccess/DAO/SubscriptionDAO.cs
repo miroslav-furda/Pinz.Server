@@ -1,4 +1,5 @@
 ﻿using System.Data.Entity;
+using System.Linq;
 using Com.Pinz.Server.DataAccess.Db;
 using Com.Pinz.Server.DataAccess.Model;
 using Ninject;
@@ -15,6 +16,11 @@ namespace Com.Pinz.Server.DataAccess.DAO
         protected override DbSet<SubscriptionDO> GetDbSet()
         {
             return context.Subscriptions;
+        }
+
+        public SubscriptionDO ReadById(string subscriptionReference)
+        {
+            return GetDbSet().Single(s => s.Reference == subscriptionReference);
         }
     }
 }

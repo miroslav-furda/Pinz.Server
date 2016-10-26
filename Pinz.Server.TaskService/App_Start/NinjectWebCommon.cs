@@ -1,3 +1,9 @@
+using System.Threading.Tasks;
+using AutoMapper;
+using Com.Pinz.Server.DataAccess.Model;
+using Com.Pinz.Server.TaskService.FastSpring;
+using Ninject.Activation;
+
 [assembly: WebActivatorEx.PreApplicationStartMethod(typeof(Com.Pinz.Server.TaskService.App_Start.NinjectWebCommon), "Start")]
 [assembly: WebActivatorEx.ApplicationShutdownMethodAttribute(typeof(Com.Pinz.Server.TaskService.App_Start.NinjectWebCommon), "Stop")]
 
@@ -22,6 +28,19 @@ namespace Com.Pinz.Server.TaskService.App_Start
         private static void RegisterServices(IKernel kernel)
         {
             kernel.Load(new DataAccessNinjectModule());
+            kernel.Bind<IMapper>().ToMethod(StartAutoMapper);
+        }
+
+        private static IMapper StartAutoMapper(IContext arg)
+        {
+            MapperConfiguration config = new MapperConfiguration(cfg =>
+            {
+                cfg.CreateMap<Task, Task>();
+                cfg.CreateMap<Subscription, SubscriptionDO>();
+                cfg.CreateMap<SubscriptionDO, Subscription>();
+            });
+
+            return config.CreateMapper();
         }
 
         /// <summary>

@@ -31,7 +31,7 @@ namespace Com.Pinz.Server.TaskService.Security
                 roles.Add(USER);
             }
 
-            UserDO user = dbContext.Users.Where(u => u.EMail == Identity.Name).Single();
+            UserDO user = dbContext.Users.Single(u => u.EMail == Identity.Name);
             if (user.ProjectStaff.Any(ps => ps.IsProjectAdmin == true))
             {
                 roles.Add(PROJECT_ADMIN);
