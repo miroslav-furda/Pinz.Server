@@ -197,6 +197,7 @@
     <Compile Include="AuthorisationService.svc.cs">
       <DependentUpon>AuthorisationService.svc</DependentUpon>
     </Compile>
+    <Compile Include="Security\RestAuthorizationManager.cs" />
     <Compile Include="SubscriptionApi\Customer.cs" />
     <Compile Include="SubscriptionApi\FastSpringNotificationParameter.cs" />
     <Compile Include="SubscriptionApi\ISiteSubscriptionService.cs" />
