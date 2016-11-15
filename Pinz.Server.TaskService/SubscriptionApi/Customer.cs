@@ -1,6 +1,6 @@
 ﻿using System.Xml.Serialization;
 
-namespace Com.Pinz.Server.TaskService.FastSpring
+namespace Com.Pinz.Server.TaskService.SubscriptionApi
 {
     public class Customer
     {

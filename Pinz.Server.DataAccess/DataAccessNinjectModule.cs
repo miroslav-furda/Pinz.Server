@@ -15,6 +15,7 @@ namespace Com.Pinz.Server.DataAccess
             Kernel.Bind<IProjectDAO>().To<ProjectDAO>();
             Kernel.Bind<IProjectStaffDAO>().To<ProjectStaffDAO>();
             Kernel.Bind<IUserDAO>().To<UserDAO>();
+            Kernel.Bind<ISubscriptionDAO>().To<SubscriptionDAO>();
         }
     }
 }

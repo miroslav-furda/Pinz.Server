@@ -1,5 +1,5 @@
-﻿using Com.Pinz.Server.DataAccess.Model;
-using System;
+﻿using System;
+using Com.Pinz.Server.DataAccess.Model;
 
 namespace Com.Pinz.Server.DataAccess
 {
@@ -7,5 +7,6 @@ namespace Com.Pinz.Server.DataAccess
     {
         CompanyDO ReadCompanyByName(string companyName);
         CompanyDO ReadCompanyById(Guid id);
+        SubscriptionDO ReadSubscriptionByCompanyId(Guid companyId);
     }
 }

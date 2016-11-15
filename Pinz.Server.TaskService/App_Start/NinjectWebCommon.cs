@@ -1,41 +1,39 @@
-using System.Threading.Tasks;
+using System;
+using System.Web;
 using AutoMapper;
+using Com.Pinz.Server.DataAccess;
 using Com.Pinz.Server.DataAccess.Model;
-using Com.Pinz.Server.TaskService.FastSpring;
+using Com.Pinz.Server.TaskService.App_Start;
+using Com.Pinz.Server.TaskService.SubscriptionApi;
+using Microsoft.Web.Infrastructure.DynamicModuleHelper;
+using Ninject;
 using Ninject.Activation;
+using Ninject.Web.Common;
+using WebActivatorEx;
 
-[assembly: WebActivatorEx.PreApplicationStartMethod(typeof(Com.Pinz.Server.TaskService.App_Start.NinjectWebCommon), "Start")]
-[assembly: WebActivatorEx.ApplicationShutdownMethodAttribute(typeof(Com.Pinz.Server.TaskService.App_Start.NinjectWebCommon), "Stop")]
+[assembly: WebActivatorEx.PreApplicationStartMethod(typeof(NinjectWebCommon), "Start")]
+[assembly: ApplicationShutdownMethod(typeof(NinjectWebCommon), "Stop")]
 
 namespace Com.Pinz.Server.TaskService.App_Start
 {
-    using System;
-    using System.Web;
-
-    using Microsoft.Web.Infrastructure.DynamicModuleHelper;
-
-    using Ninject;
-    using Ninject.Web.Common;
-    using DataAccess;
-    public static class NinjectWebCommon 
+    public static class NinjectWebCommon
     {
         private static readonly Bootstrapper bootstrapper = new Bootstrapper();
 
         /// <summary>
-        /// Load your modules or register your services here!
+        ///     Load your modules or register your services here!
         /// </summary>
         /// <param name="kernel">The kernel.</param>
         private static void RegisterServices(IKernel kernel)
         {
             kernel.Load(new DataAccessNinjectModule());
-            kernel.Bind<IMapper>().ToMethod(StartAutoMapper);
+            kernel.Bind<IMapper>().ToMethod(StartAutoMapper).InThreadScope();
         }
 
         private static IMapper StartAutoMapper(IContext arg)
         {
-            MapperConfiguration config = new MapperConfiguration(cfg =>
+            var config = new MapperConfiguration(cfg =>
             {
-                cfg.CreateMap<Task, Task>();
                 cfg.CreateMap<Subscription, SubscriptionDO>();
                 cfg.CreateMap<SubscriptionDO, Subscription>();
             });
@@ -44,25 +42,25 @@ namespace Com.Pinz.Server.TaskService.App_Start
         }
 
         /// <summary>
-        /// Starts the application
+        ///     Starts the application
         /// </summary>
-        public static void Start() 
+        public static void Start()
         {
             DynamicModuleUtility.RegisterModule(typeof(OnePerRequestHttpModule));
             DynamicModuleUtility.RegisterModule(typeof(NinjectHttpModule));
             bootstrapper.Initialize(CreateKernel);
         }
-        
+
         /// <summary>
-        /// Stops the application.
+        ///     Stops the application.
         /// </summary>
         public static void Stop()
         {
             bootstrapper.ShutDown();
         }
-        
+
         /// <summary>
-        /// Creates the kernel that will manage your application.
+        ///     Creates the kernel that will manage your application.
         /// </summary>
         /// <returns>The created kernel.</returns>
         private static IKernel CreateKernel()

@@ -1,8 +1,8 @@
-﻿
-using System;
+﻿using System;
 using System.Xml.Serialization;
+using Com.Pinz.Server.DataAccess.Model;
 
-namespace Com.Pinz.Server.TaskService.FastSpring
+namespace Com.Pinz.Server.TaskService.SubscriptionApi
 {
     [XmlRoot("subscription")]
     public class Subscription
@@ -23,7 +23,7 @@ namespace Com.Pinz.Server.TaskService.FastSpring
         public Boolean Test { get; set; }
 
         [XmlElement("reference")]
-        public string Reference { get; set; }
+        public string SubscriptionReference { get; set; }
 
         [XmlElement("referrer")]
         public string Referrer { get; set; }
@@ -56,36 +56,19 @@ namespace Com.Pinz.Server.TaskService.FastSpring
         public string Coupon { get; set; }
 
         [XmlElement("nextPeriodDate")]
-        public DateTime NextPeriodDate { get; set; }
+        public DateTime? NextPeriodDate { get; set; }
 
         [XmlElement("end")]
-        public DateTime End { get; set; }
+        public DateTime? End { get; set; }
 
         public override string ToString()
         {
             return $"{nameof(Status)}: {Status}, {nameof(StatusChanged)}: {StatusChanged}, {nameof(StatusReason)}: {StatusReason}, " +
-                   $"{nameof(Cancelable)}: {Cancelable}, {nameof(Test)}: {Test}, {nameof(Reference)}: {Reference}, {nameof(Referrer)}: {Referrer}, " +
+                   $"{nameof(Cancelable)}: {Cancelable}, {nameof(Test)}: {Test}, {nameof(SubscriptionReference)}: {SubscriptionReference}, {nameof(Referrer)}: {Referrer}, " +
                    $"{nameof(SourceName)}: {SourceName}, {nameof(SourceKey)}: {SourceKey}, {nameof(SourceCampaign)}: {SourceCampaign}, {nameof(Customer)}: " +
                    $"{Customer}, {nameof(CustomerUrl)}: {CustomerUrl}, {nameof(ProductName)}: {ProductName}, {nameof(Tags)}: {Tags}, {nameof(Quantity)}: " +
                    $"{Quantity}, {nameof(Coupon)}: {Coupon}, {nameof(NextPeriodDate)}: {NextPeriodDate}, {nameof(End)}: {End}";
         }
     }
 
-    public enum SubscriptionStatus
-    {
-        [XmlEnum(Name = "active")]
-        Active,
-        [XmlEnum(Name = "inactive")]
-        Inactive
-    }
-
-    public enum SubscriptionStatusReason
-    {
-        [XmlEnum(Name = "canceled-non-payment")]
-        CanceledNonPayment,
-        [XmlEnum(Name = "completed")]
-        Completed,
-        [XmlEnum(Name = "canceled")]
-        Canceled
-    }
 }

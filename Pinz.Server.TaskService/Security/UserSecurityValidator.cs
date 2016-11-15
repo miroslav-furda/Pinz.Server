@@ -1,9 +1,9 @@
 ﻿using System;
-using Com.Pinz.Server.DataAccess.Db;
-using System.Linq;
 using System.IdentityModel.Selectors;
 using System.IdentityModel.Tokens;
+using System.Linq;
 using System.ServiceModel;
+using Com.Pinz.Server.DataAccess.Db;
 using Com.Pinz.Server.DataAccess.Model;
 
 namespace Com.Pinz.Server.TaskService.Security
@@ -15,26 +15,29 @@ namespace Com.Pinz.Server.TaskService.Security
             if (string.IsNullOrEmpty(userName) || string.IsNullOrEmpty(password))
                 throw new SecurityTokenException("Username and password required");
 
-
-            PinzDbContext dbContext = new PinzDbContext();
-            UserDO user = dbContext.Users.SingleOrDefault(u => u.EMail == userName && u.Password == password);
+            var dbContext = new PinzDbContext("pinzDBConnectionString");
+            var user = dbContext.Users.SingleOrDefault(u => (u.EMail == userName) && (u.Password == password));
             if (user == null)
-            {
                 throw new FaultException($"Wrong username ({userName}) or password");
-            }
-            else if (user.Company.Subscription.Status == SubscriptionStatus.Inactive )
-            {
-                SubscriptionDO subscription = user.Company.Subscription;
-                if (subscription.StatusReason != null && subscription.StatusReason == SubscriptionStatusReason.Canceled &&
-                    subscription.End.AddMonths(1) < DateTime.Today)
-                {
-                    throw new FaultException($"Subscription for Company ({user.Company}) has been canceled.");
-                }else if (subscription.StatusReason != null && subscription.StatusReason == SubscriptionStatusReason.Canceled &&
-                    subscription.End.AddMonths(2) < DateTime.Today)
-                {
-                    throw new FaultException($"Payment for Company ({user.Company}) could NOT be processed.");
-                }
 
+            var company = dbContext.Companies.Single(c => c.CompanyId == user.CompanyId);
+            var subscription =
+                dbContext.Subscriptions.Single(s => s.SubscriptionReference == company.SubscriptionReference);
+            if (subscription.Status == SubscriptionStatus.Inactive)
+            {
+                if ((subscription.StatusReason != null) &&
+                    (subscription.StatusReason == SubscriptionStatusReason.Canceled) &&
+                    (subscription.End?.AddMonths(1) < DateTime.Today))
+                    throw new FaultException($"Subscription for Company ({user.Company}) has been canceled.");
+                else if ((subscription.StatusReason != null) &&
+                         (subscription.StatusReason == SubscriptionStatusReason.CanceledNonPayment) &&
+                         (subscription.End?.AddMonths(2) < DateTime.Today))
+                    throw new FaultException($"Payment for Company ({user.Company}) could NOT be processed.");
+            }
+            else
+            {
+                if( subscription.Test && subscription.End < DateTime.Today )
+                    throw new FaultException($"Trial for Company ({user.Company}) expired.");
             }
         }
     }

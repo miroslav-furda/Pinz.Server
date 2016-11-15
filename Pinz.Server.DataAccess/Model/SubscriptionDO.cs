@@ -8,9 +8,9 @@ namespace Com.Pinz.Server.DataAccess.Model
     [Table("Subscriptions")]
     public class SubscriptionDO
     {
-
         [Key]
-        public string Reference { get; set; }
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]
+        public string SubscriptionReference { get; set; }
 
         public SubscriptionStatus Status { get; set; }
 
@@ -18,9 +18,9 @@ namespace Com.Pinz.Server.DataAccess.Model
 
         public SubscriptionStatusReason? StatusReason { get; set; }
 
-        public Boolean Cancelable { get; set; }
+        public bool Cancelable { get; set; }
 
-        public Boolean Test { get; set; }
+        public bool Test { get; set; }
 
         public string Referrer { get; set; }
 
@@ -40,41 +40,30 @@ namespace Com.Pinz.Server.DataAccess.Model
 
         public string Coupon { get; set; }
 
-        public DateTime NextPeriodDate { get; set; }
+        public DateTime? NextPeriodDate { get; set; }
 
-        public DateTime End { get; set; }
+        public DateTime? End { get; set; }
 
-        [Required]
-        public Guid CompanyId { get; set; }
-        [ForeignKey("CompanyId")]
-        public virtual CompanyDO Company { get; set; }
+        public string OriginalEmail { get; set; }
 
         public override string ToString()
         {
-            return $"{nameof(Status)}: {Status}, {nameof(StatusChanged)}: {StatusChanged}, {nameof(StatusReason)}: {StatusReason}, " +
-                   $"{nameof(Cancelable)}: {Cancelable}, {nameof(Test)}: {Test}, {nameof(Reference)}: {Reference}, {nameof(Referrer)}: {Referrer}, " +
-                   $"{nameof(SourceName)}: {SourceName}, {nameof(SourceKey)}: {SourceKey}, {nameof(SourceCampaign)}: {SourceCampaign}, " +
-                   $"{nameof(CustomerUrl)}: {CustomerUrl}, {nameof(ProductName)}: {ProductName}, {nameof(Tags)}: {Tags}, " +
-                   $"{nameof(Quantity)}: {Quantity}, {nameof(Coupon)}: {Coupon}, {nameof(NextPeriodDate)}: {NextPeriodDate}, {nameof(End)}: {End}";
+            return
+                $"{nameof(SubscriptionReference)}: {SubscriptionReference}, {nameof(Status)}: {Status}, {nameof(StatusChanged)}: {StatusChanged}, {nameof(StatusReason)}: {StatusReason}, {nameof(Cancelable)}: {Cancelable}, {nameof(Test)}: {Test}, {nameof(Referrer)}: {Referrer}, {nameof(SourceName)}: {SourceName}, {nameof(SourceKey)}: {SourceKey}, {nameof(SourceCampaign)}: {SourceCampaign}, {nameof(CustomerUrl)}: {CustomerUrl}, {nameof(ProductName)}: {ProductName}, {nameof(Tags)}: {Tags}, {nameof(Quantity)}: {Quantity}, {nameof(Coupon)}: {Coupon}, {nameof(NextPeriodDate)}: {NextPeriodDate}, {nameof(End)}: {End}, {nameof(OriginalEmail)}: {OriginalEmail}";
         }
     }
 
 
     public enum SubscriptionStatus
     {
-        [XmlEnum(Name = "active")]
-        Active,
-        [XmlEnum(Name = "inactive")]
-        Inactive
+        [XmlEnum(Name = "active")] Active,
+        [XmlEnum(Name = "inactive")] Inactive
     }
 
     public enum SubscriptionStatusReason
     {
-        [XmlEnum(Name = "canceled-non-payment")]
-        CanceledNonPayment,
-        [XmlEnum(Name = "completed")]
-        Completed,
-        [XmlEnum(Name = "canceled")]
-        Canceled
+        [XmlEnum(Name = "canceled-non-payment")] CanceledNonPayment,
+        [XmlEnum(Name = "completed")] Completed,
+        [XmlEnum(Name = "canceled")] Canceled
     }
 }

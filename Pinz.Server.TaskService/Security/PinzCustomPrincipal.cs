@@ -24,7 +24,7 @@ namespace Com.Pinz.Server.TaskService.Security
         {
             this.Identity = client;
 
-            PinzDbContext dbContext = new PinzDbContext();
+            PinzDbContext dbContext = new PinzDbContext("pinzDBConnectionString");
             roles = new List<string>();
             if (Identity.IsAuthenticated)
             {

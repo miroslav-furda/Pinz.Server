@@ -1,4 +1,5 @@
-﻿using System.Data.Entity;
+﻿using System;
+using System.Data.Entity;
 using System.Linq;
 using Com.Pinz.Server.DataAccess.Db;
 using Com.Pinz.Server.DataAccess.Model;
@@ -20,7 +21,7 @@ namespace Com.Pinz.Server.DataAccess.DAO
 
         public SubscriptionDO ReadById(string subscriptionReference)
         {
-            return GetDbSet().Single(s => s.Reference == subscriptionReference);
+            return GetDbSet().Single(s => s.SubscriptionReference == subscriptionReference);
         }
     }
 }

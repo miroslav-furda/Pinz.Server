@@ -11,7 +11,7 @@ namespace Com.Pinz.Server.DataAccess.Db
 
         }
 
-        public PinzDbContext() : base("name=pinzDBConnectionString")
+        public PinzDbContext() : base()
         {
         }
 

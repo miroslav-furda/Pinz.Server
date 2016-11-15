@@ -1,4 +1,5 @@
-﻿using Com.Pinz.Server.DataAccess.Model;
+﻿using System;
+using Com.Pinz.Server.DataAccess.Model;
 
 namespace Com.Pinz.Server.DataAccess
 {

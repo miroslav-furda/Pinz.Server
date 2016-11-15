@@ -20,6 +20,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -28,6 +29,7 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet />
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Dev|AnyCPU'">
     <OutputPath>bin\Dev\</OutputPath>
@@ -36,7 +38,8 @@
     <DebugType>pdbonly</DebugType>
     <PlatformTarget>AnyCPU</PlatformTarget>
     <ErrorReport>prompt</ErrorReport>
-    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRuleSet>
+    </CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Common.Logging, Version=3.3.1.0, Culture=neutral, PublicKeyToken=af08829b84f0328e, processorArchitecture=MSIL">
@@ -105,6 +108,14 @@
     <Compile Include="Migrations\201603181516170_User_PinzSuperadmin.Designer.cs">
       <DependentUpon>201603181516170_User_PinzSuperadmin.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201610280939301_Subscription.cs" />
+    <Compile Include="Migrations\201610280939301_Subscription.Designer.cs">
+      <DependentUpon>201610280939301_Subscription.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201611151426575_Subsciption_OriginalEmail.cs" />
+    <Compile Include="Migrations\201611151426575_Subsciption_OriginalEmail.Designer.cs">
+      <DependentUpon>201611151426575_Subsciption_OriginalEmail.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Model\CategoryDO.cs" />
     <Compile Include="Model\CompanyDO.cs" />
@@ -132,6 +143,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201603181516170_User_PinzSuperadmin.resx">
       <DependentUpon>201603181516170_User_PinzSuperadmin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201610280939301_Subscription.resx">
+      <DependentUpon>201610280939301_Subscription.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201611151426575_Subsciption_OriginalEmail.resx">
+      <DependentUpon>201611151426575_Subsciption_OriginalEmail.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
