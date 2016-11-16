@@ -1,130 +1,133 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using Com.Pinz.Server.DataAccess.Model;
-using Com.Pinz.Server.DataAccess;
-using Ninject;
 using System.Security.Permissions;
-using Com.Pinz.Server.TaskService.InviteUser;
+using Com.Pinz.Server.DataAccess;
+using Com.Pinz.Server.DataAccess.Model;
 using Com.Pinz.Server.TaskService.Infrastructure;
+using Com.Pinz.Server.TaskService.InviteUser;
+using Ninject;
 
 namespace Com.Pinz.Server.TaskService
 {
     [GlobalErrorBehavior(typeof(GlobalErrorHandler))]
     public class AdministrationService : IAdministrationService
     {
-        private IProjectDAO projectDAO;
-        private IUserDAO userDAO;
-        private ITaskDAO taskDAO;
-        private ICompanyDAO companyDAO;
-        private IProjectStaffDAO projectStaffDAO;
+        private readonly ICompanyDAO _companyDao;
+        private readonly IProjectDAO _projectDao;
+        private readonly IProjectStaffDAO _projectStaffDao;
+        private readonly ITaskDAO _taskDao;
+        private readonly IUserDAO _userDao;
 
         [Inject]
-        public AdministrationService(IProjectDAO projectDAO, IUserDAO userDAO, ICompanyDAO companyDAO, 
-            IProjectStaffDAO projectStaffDAO, ITaskDAO taskDAO)
+        public AdministrationService(IProjectDAO projectDao, IUserDAO userDao, ICompanyDAO companyDao,
+            IProjectStaffDAO projectStaffDao, ITaskDAO taskDao)
         {
-            this.projectDAO = projectDAO;
-            this.userDAO = userDAO;
-            this.companyDAO = companyDAO;
-            this.projectStaffDAO = projectStaffDAO;
-            this.taskDAO = taskDAO;
+            this._projectDao = projectDao;
+            this._userDao = userDao;
+            this._companyDao = companyDao;
+            this._projectStaffDao = projectStaffDao;
+            this._taskDao = taskDao;
         }
 
         [PrincipalPermission(SecurityAction.Demand, Role = "COMPANY_ADMIN")]
         public List<UserDO> ReadAllUsersForCompanyId(Guid companyId)
         {
-            return userDAO.ReadAllUsersInCompany(companyId);
+            return _userDao.ReadAllUsersInCompany(companyId);
         }
 
         [PrincipalPermission(SecurityAction.Demand, Role = "COMPANY_ADMIN")]
         public List<ProjectDO> ReadProjectsForCompanyId(Guid companyId)
         {
-            return projectDAO.ReadProjectsForCompanyId(companyId);
+            return _projectDao.ReadProjectsForCompanyId(companyId);
         }
 
         [PrincipalPermission(SecurityAction.Demand, Role = "PROJECT_ADMIN")]
         public void RemoveUserFromProject(Guid userId, Guid projectId)
         {
-            ProjectStaffDO ps = projectStaffDAO.GetById(userId, projectId);
-            projectStaffDAO.Delete(ps);
+            var ps = _projectStaffDao.GetById(userId, projectId);
+            _projectStaffDao.Delete(ps);
         }
 
         [PrincipalPermission(SecurityAction.Demand, Role = "PROJECT_ADMIN")]
         public void AddUserToProject(Guid userId, Guid projectId, bool isProjectAdmin)
         {
-            ProjectStaffDO ps = new ProjectStaffDO();
+            var ps = new ProjectStaffDO();
             ps.ProjectId = projectId;
             ps.UserId = userId;
             ps.IsProjectAdmin = isProjectAdmin;
-            projectStaffDAO.Create(ps);
+            _projectStaffDao.Create(ps);
         }
 
         [PrincipalPermission(SecurityAction.Demand, Role = "USER")]
         public CompanyDO ReadCompanyById(Guid id)
         {
-            return companyDAO.ReadCompanyById(id);
+            return _companyDao.ReadCompanyById(id);
         }
 
         [PrincipalPermission(SecurityAction.Demand, Role = "COMPANY_ADMIN")]
         public ProjectDO CreateProject(ProjectDO project)
         {
-            return projectDAO.Create(project);
+            if (CanCreateProject(project))
+                return _projectDao.Create(project);
+            throw new InvalidOperationException("Failed to create new Project. Too many projects for this subscription");
         }
 
         [PrincipalPermission(SecurityAction.Demand, Role = "PROJECT_ADMIN")]
         public UserDO CreateUser(UserDO user)
         {
             user.Password = "test";
-            return userDAO.Create(user);
+            return _userDao.Create(user);
         }
 
         [PrincipalPermission(SecurityAction.Demand, Role = "COMPANY_ADMIN")]
         public void DeleteProject(ProjectDO project)
         {
-            projectDAO.Delete(project);
+            _projectDao.Delete(project);
         }
 
         [PrincipalPermission(SecurityAction.Demand, Role = "COMPANY_ADMIN")]
         public void DeleteUser(UserDO user)
         {
-            projectStaffDAO.DeleteAllStaffingForUser(user.UserId);
+            _projectStaffDao.DeleteAllStaffingForUser(user.UserId);
 
-            var usersTasks = taskDAO.ReadAllUserTasks(user.UserId);
-            foreach(var task in usersTasks)
+            var usersTasks = _taskDao.ReadAllUserTasks(user.UserId);
+            foreach (var task in usersTasks)
             {
                 task.UserId = null;
                 task.User = null;
-                taskDAO.Update(task);
+                _taskDao.Update(task);
             }
 
-            userDAO.Delete(user);
+            _userDao.Delete(user);
         }
 
         [PrincipalPermission(SecurityAction.Demand, Role = "PROJECT_ADMIN")]
         public ProjectDO UpdateProject(ProjectDO project)
         {
-            return projectDAO.Update(project);
+            return _projectDao.Update(project);
         }
 
         [PrincipalPermission(SecurityAction.Demand, Role = "USER")]
         public UserDO UpdateUser(UserDO user)
         {
-            UserDO originlUser = userDAO.ReadByEmail(user.EMail);
+            var originlUser = _userDao.ReadByEmail(user.EMail);
             originlUser.FamilyName = user.FamilyName;
             originlUser.FirstName = user.FirstName;
             originlUser.IsCompanyAdmin = user.IsCompanyAdmin;
-            return userDAO.Update(originlUser);
+            return _userDao.Update(originlUser);
         }
 
         [PrincipalPermission(SecurityAction.Demand, Role = "USER")]
         public bool ChangeUserPassword(Guid userId, string oldPassword, string newPassword, string newPassword2)
         {
-            UserDO originalUser = userDAO.GetById(userId);
-            if (!String.IsNullOrEmpty(oldPassword) && !String.IsNullOrEmpty(newPassword) && !String.IsNullOrEmpty(newPassword2)
-                && newPassword.Length >= 6 && oldPassword.Equals(originalUser.Password) && newPassword.Equals(newPassword2))
+            var originalUser = _userDao.GetById(userId);
+            if (!string.IsNullOrEmpty(oldPassword) && !string.IsNullOrEmpty(newPassword) &&
+                !string.IsNullOrEmpty(newPassword2)
+                && (newPassword.Length >= 6) && oldPassword.Equals(originalUser.Password) &&
+                newPassword.Equals(newPassword2))
             {
                 originalUser.Password = newPassword;
-                userDAO.Update(originalUser);
+                _userDao.Update(originalUser);
                 return true;
             }
             return false;
@@ -134,46 +137,42 @@ namespace Com.Pinz.Server.TaskService
         public List<ProjectDO> ReadAdminProjectsForUser(Guid userId)
         {
             List<ProjectDO> projects;
-            UserDO user = userDAO.GetById(userId);
+            var user = _userDao.GetById(userId);
             if (user.IsCompanyAdmin)
-            {
-                projects = projectDAO.ReadProjectsForCompanyId(user.CompanyId);
-            }
+                projects = _projectDao.ReadProjectsForCompanyId(user.CompanyId);
             else
-            {
-                projects = projectDAO.ReadAdminProjectsForUserId(userId);
-            }
+                projects = _projectDao.ReadAdminProjectsForUserId(userId);
             return projects;
         }
 
         [PrincipalPermission(SecurityAction.Demand, Role = "USER")]
         public List<UserDO> ReadAllUsersByProject(Guid projectId)
         {
-            return userDAO.ReadAllUsersInProject(projectId);
+            return _userDao.ReadAllUsersInProject(projectId);
         }
 
         [PrincipalPermission(SecurityAction.Demand, Role = "PROJECT_ADMIN")]
         public List<ProjectUserDO> ReadAllProjectUsersInProject(Guid projectId)
         {
-            return projectStaffDAO.ReadAllProjectUsersInProject(projectId);
+            return _projectStaffDao.ReadAllProjectUsersInProject(projectId);
         }
 
         [PrincipalPermission(SecurityAction.Demand, Role = "PROJECT_ADMIN")]
         public void SetProjectAdminFlag(Guid userId, Guid projectId, bool isProjectAdmin)
         {
-            ProjectStaffDO ps = projectStaffDAO.GetById(userId, projectId);
+            var ps = _projectStaffDao.GetById(userId, projectId);
             ps.IsProjectAdmin = isProjectAdmin;
-            projectStaffDAO.Update(ps);
+            _projectStaffDao.Update(ps);
         }
 
         [PrincipalPermission(SecurityAction.Demand, Role = "PROJECT_ADMIN")]
         public UserDO InviteNewUser(string newUserEmail, Guid projectId, Guid invitingUserId)
         {
-            ProjectDO project = projectDAO.GetById(projectId);
-            UserDO invitingUser = userDAO.GetById(invitingUserId);
+            var project = _projectDao.GetById(projectId);
+            var invitingUser = _userDao.GetById(invitingUserId);
 
-            string generatedPassword = RandomPassword.Generate();
-            UserDO user = new UserDO()
+            var generatedPassword = RandomPassword.Generate();
+            var user = new UserDO
             {
                 EMail = newUserEmail,
                 IsCompanyAdmin = false,
@@ -181,12 +180,20 @@ namespace Com.Pinz.Server.TaskService
                 CompanyId = invitingUser.CompanyId,
                 Password = generatedPassword
             };
-            user = userDAO.Create(user);
+            user = _userDao.Create(user);
             AddUserToProject(user.UserId, projectId, false);
 
             InvitationEmailSender.SendProjectInvitation(newUserEmail, invitingUser, project, generatedPassword);
 
             return user;
+        }
+
+        [PrincipalPermission(SecurityAction.Demand, Role = "COMPANY_ADMIN")]
+        public bool CanCreateProject(ProjectDO project)
+        {
+            var projects = _projectDao.ReadProjectsForCompanyId(project.CompanyId);
+            var subscription = _companyDao.ReadSubscriptionByCompanyId(project.CompanyId);
+            return subscription.Quantity > projects.Count;
         }
     }
 }
