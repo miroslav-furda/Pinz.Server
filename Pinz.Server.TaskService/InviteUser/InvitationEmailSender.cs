@@ -129,7 +129,7 @@ namespace Com.Pinz.Server.TaskService.InviteUser
         {
             var smtpClient = new SmtpClient("mail.pinzonline.com", 25);
 
-            smtpClient.Credentials = new NetworkCredential("subscribe@pinzonline.com", "r3OFW^B0M^m1");
+            smtpClient.Credentials = new NetworkCredential("subscribe@pinzonline.com", "IFlp^ai46Eir");
             smtpClient.DeliveryMethod = SmtpDeliveryMethod.Network;
             smtpClient.EnableSsl = false;
             return smtpClient;

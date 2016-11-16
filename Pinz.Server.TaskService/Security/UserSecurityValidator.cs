@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Data.Entity;
 using System.IdentityModel.Selectors;
 using System.IdentityModel.Tokens;
 using System.Linq;
@@ -25,19 +26,23 @@ namespace Com.Pinz.Server.TaskService.Security
                 dbContext.Subscriptions.Single(s => s.SubscriptionReference == company.SubscriptionReference);
             if (subscription.Status == SubscriptionStatus.Inactive)
             {
-                if ((subscription.StatusReason != null) &&
-                    (subscription.StatusReason == SubscriptionStatusReason.Canceled) &&
-                    (subscription.End?.AddMonths(1) < DateTime.Today))
-                    throw new FaultException($"Subscription for Company ({user.Company}) has been canceled.");
-                else if ((subscription.StatusReason != null) &&
-                         (subscription.StatusReason == SubscriptionStatusReason.CanceledNonPayment) &&
-                         (subscription.End?.AddMonths(2) < DateTime.Today))
-                    throw new FaultException($"Payment for Company ({user.Company}) could NOT be processed.");
-            }
-            else
-            {
-                if( subscription.Test && subscription.End < DateTime.Today )
+                if (subscription.Test)
+                {
                     throw new FaultException($"Trial for Company ({user.Company}) expired.");
+                }
+                else
+                {
+                    throw new FaultException($"Subscription for Company ({user.Company}) has been canceled.");
+                }
+            }
+            if (subscription.Test && (subscription.End < DateTime.Today))
+            {
+                subscription.Status = SubscriptionStatus.Inactive;
+                subscription.StatusReason = SubscriptionStatusReason.Canceled;
+                dbContext.Entry(subscription).State = EntityState.Modified;
+                dbContext.SaveChanges();
+
+                throw new FaultException($"Trial for Company ({user.Company}) expired.");
             }
         }
     }
