@@ -10,8 +10,7 @@ namespace Com.Pinz.Server.TaskService
     public interface IAdministrationService
     {
         [OperationContract]
-        [ApplyDataContractResolver]
-        bool CanCreateProject(ProjectDO project);
+        bool CanCreateProject(Guid companyId);
 
         [OperationContract]
         UserDO InviteNewUser(string newUserEmail, Guid projectId, Guid invitingUserId);

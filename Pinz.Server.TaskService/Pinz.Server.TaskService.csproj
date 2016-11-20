@@ -238,6 +238,7 @@
   <ItemGroup>
     <Content Include="AdministrationService.svc" />
     <Content Include="AuthorisationService.svc" />
+    <Content Include="InviteUser\wellcomeBackEmail.html" />
     <Content Include="InviteUser\trialToSubscriptionEmail.html" />
     <Content Include="InviteUser\newTrialEmail.html" />
     <Content Include="SubscriptionApi\SiteSubscriptionService.svc" />

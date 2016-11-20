@@ -67,7 +67,7 @@ namespace Com.Pinz.Server.TaskService
         [PrincipalPermission(SecurityAction.Demand, Role = "COMPANY_ADMIN")]
         public ProjectDO CreateProject(ProjectDO project)
         {
-            if (CanCreateProject(project))
+            if (CanCreateProject(project.CompanyId))
                 return _projectDao.Create(project);
             throw new InvalidOperationException("Failed to create new Project. Too many projects for this subscription");
         }
@@ -189,10 +189,10 @@ namespace Com.Pinz.Server.TaskService
         }
 
         [PrincipalPermission(SecurityAction.Demand, Role = "COMPANY_ADMIN")]
-        public bool CanCreateProject(ProjectDO project)
+        public bool CanCreateProject(Guid companyId)
         {
-            var projects = _projectDao.ReadProjectsForCompanyId(project.CompanyId);
-            var subscription = _companyDao.ReadSubscriptionByCompanyId(project.CompanyId);
+            var projects = _projectDao.ReadProjectsForCompanyId(companyId);
+            var subscription = _companyDao.ReadSubscriptionByCompanyId(companyId);
             return subscription.Quantity > projects.Count;
         }
     }

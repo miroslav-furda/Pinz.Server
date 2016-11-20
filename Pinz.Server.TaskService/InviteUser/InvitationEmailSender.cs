@@ -23,6 +23,24 @@ namespace Com.Pinz.Server.TaskService.InviteUser
         private static readonly string TrialToSubsciptionEmailTemplate =
             File.ReadAllText(HostingEnvironment.MapPath("~/InviteUser/trialToSubscriptionEmail.html"));
 
+        private static readonly string WellcomeBackEmailTemplate =
+    File.ReadAllText(HostingEnvironment.MapPath("~/InviteUser/wellcomeBackEmail.html"));
+
+        public static void WellcomeBack(string userEMail)
+        {
+            var smtpClient = CreateSmtpClient();
+            var mail = new MailMessage { From = new MailAddress("subscribe@pinzonline.com", "PINZonline") };
+
+            //Setting From , To and CC
+            mail.To.Add(new MailAddress(userEMail));
+
+            //Content
+            mail.Subject = "Your subscription for PinzOnline is ready!";
+            mail.Body = string.Format(NewCustomerEmailTemplate);
+            mail.IsBodyHtml = true;
+
+            smtpClient.Send(mail);
+        }
 
         public static void SendNewCustomerDuplicateInvitation(string originalEmail, string newUserEMail, string generatedPassword)
         {

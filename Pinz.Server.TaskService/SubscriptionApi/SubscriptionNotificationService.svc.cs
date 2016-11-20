@@ -57,7 +57,8 @@ namespace Com.Pinz.Server.TaskService.SubscriptionApi
             else
             {
                 var subscriptionDo = _companyDao.ReadSubscriptionByCompanyId(user.CompanyId);
-                if (user.IsCompanyAdmin && subscriptionDo.Test)
+                if (user.IsCompanyAdmin &&
+                    (subscriptionDo.Test || (subscriptionDo.Status == SubscriptionStatus.Inactive)))
                 {
                     var newSubscriptionDo = _mapper.Map<SubscriptionDO>(subscription);
                     _log.InfoFormat("Subscription ID:{0}, subscription created in DB. {1}",
@@ -72,7 +73,13 @@ namespace Com.Pinz.Server.TaskService.SubscriptionApi
                         company);
 
                     _subscriptionDao.Delete(subscriptionDo);
-                    InvitationEmailSender.SendTrialToSubscription(user.EMail, user.Password);
+
+                    if (subscriptionDo.Test)
+                        InvitationEmailSender.SendTrialToSubscription(user.EMail, user.Password);
+                    else if (subscriptionDo.Status == SubscriptionStatus.Inactive)
+                        InvitationEmailSender.WellcomeBack(user.EMail);
+                    _log.InfoFormat("Subscription ID:{0}, email sent. Activation finished successfully.",
+                        newSubscriptionDo.SubscriptionReference);
                 }
                 else
                 {
