@@ -1,9 +1,9 @@
+*.rb linguist-language=csharp
+
 ###############################################################################
 # Set default behavior to automatically normalize line endings.
 ###############################################################################
 * text=auto
-
-*.rb linguist-language=Java
 
 ###############################################################################
 # Set default behavior for command prompt diff.
